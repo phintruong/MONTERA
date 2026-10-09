@@ -1,0 +1,1168 @@
+{
+  "product": {
+    "id": "lack",
+    "name": "LACK side table",
+    "dims": "550 × 550 × 450 mm"
+  },
+  "parts": {
+    "cardboard": {
+      "name": "Cardboard (from the box)",
+      "shape": "box",
+      "size": [
+        760,
+        4,
+        760
+      ],
+      "color": "#dcc093"
+    },
+    "top": {
+      "name": "Tabletop",
+      "shape": "box",
+      "size": [
+        550,
+        50,
+        550
+      ],
+      "color": "#fbfaf6",
+      "finishedFace": "+y",
+      "finishedLabel": "Glossy side"
+    },
+    "leg": {
+      "name": "Leg",
+      "shape": "box",
+      "size": [
+        50,
+        400,
+        50
+      ],
+      "color": "#fbfaf6"
+    },
+    "screw": {
+      "name": "Double-ended screw",
+      "shape": "screw",
+      "size": [
+        8,
+        40,
+        8
+      ],
+      "color": "#9a9fa5",
+      "hardware": true
+    }
+  },
+  "instances": [
+    {
+      "id": "cardboard",
+      "part": "cardboard",
+      "initial": {
+        "pos": [
+          0,
+          -2,
+          0
+        ]
+      },
+      "enterStep": 0
+    },
+    {
+      "id": "top",
+      "part": "top",
+      "initial": {
+        "pos": [
+          0,
+          320,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      "enterStep": 0
+    },
+    {
+      "id": "leg1",
+      "part": "leg",
+      "initial": {
+        "pos": [
+          -330,
+          200,
+          520
+        ]
+      },
+      "enterStep": 1
+    },
+    {
+      "id": "leg2",
+      "part": "leg",
+      "initial": {
+        "pos": [
+          -110,
+          200,
+          520
+        ]
+      },
+      "enterStep": 1
+    },
+    {
+      "id": "leg3",
+      "part": "leg",
+      "initial": {
+        "pos": [
+          110,
+          200,
+          520
+        ]
+      },
+      "enterStep": 1
+    },
+    {
+      "id": "leg4",
+      "part": "leg",
+      "initial": {
+        "pos": [
+          330,
+          200,
+          520
+        ]
+      },
+      "enterStep": 1
+    },
+    {
+      "id": "screw1",
+      "part": "screw",
+      "initial": {
+        "pos": [
+          -330,
+          620,
+          520
+        ]
+      },
+      "enterStep": 1
+    },
+    {
+      "id": "screw2",
+      "part": "screw",
+      "initial": {
+        "pos": [
+          -110,
+          620,
+          520
+        ]
+      },
+      "enterStep": 1
+    },
+    {
+      "id": "screw3",
+      "part": "screw",
+      "initial": {
+        "pos": [
+          110,
+          620,
+          520
+        ]
+      },
+      "enterStep": 1
+    },
+    {
+      "id": "screw4",
+      "part": "screw",
+      "initial": {
+        "pos": [
+          330,
+          620,
+          520
+        ]
+      },
+      "enterStep": 1
+    }
+  ],
+  "steps": [
+    {
+      "id": "top-down",
+      "title": "Tabletop glossy side down",
+      "instruction": "Lay the cardboard flat. Put the tabletop on it with the glossy side facing down, so the four pre-drilled holes face up.",
+      "durationSec": 3.5,
+      "camera": {
+        "position": [
+          750,
+          650,
+          950
+        ],
+        "target": [
+          0,
+          60,
+          0
+        ]
+      },
+      "moves": [
+        {
+          "instance": "top",
+          "to": {
+            "pos": [
+              0,
+              25,
+              0
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "active": [
+        "top"
+      ],
+      "hands": [
+        {
+          "side": "right",
+          "follow": "top",
+          "mode": "local",
+          "offset": [
+            300,
+            -45,
+            0
+          ],
+          "rot": [
+            180,
+            90,
+            0
+          ],
+          "pose": "flat"
+        },
+        {
+          "side": "left",
+          "follow": "top",
+          "mode": "local",
+          "offset": [
+            -300,
+            -45,
+            0
+          ],
+          "rot": [
+            180,
+            -90,
+            0
+          ],
+          "pose": "flat"
+        }
+      ],
+      "showFinishedFace": true,
+      "arrows": [
+        {
+          "from": [
+            0,
+            260,
+            0
+          ],
+          "to": [
+            0,
+            90,
+            0
+          ]
+        }
+      ],
+      "tray": [
+        {
+          "part": "top",
+          "count": 1
+        },
+        {
+          "part": "cardboard",
+          "count": 1
+        }
+      ],
+      "warning": "Glossy side DOWN. If you can see the shiny surface, flip it. The holes must face you.",
+      "checklist": [
+        "Tabletop is on the cardboard, glossy side down",
+        "I can see the 4 corner holes"
+      ],
+      "faq": [
+        {
+          "keywords": [
+            "which side",
+            "which way",
+            "up",
+            "down",
+            "glossy",
+            "shiny",
+            "flip"
+          ],
+          "answer": "Glossy side down on the cardboard. The side with the four holes faces up toward you."
+        },
+        {
+          "keywords": [
+            "cardboard",
+            "floor",
+            "scratch"
+          ],
+          "answer": "Use the flattened box as a mat so the glossy top does not get scratched."
+        },
+        {
+          "keywords": [
+            "hole",
+            "holes"
+          ],
+          "answer": "There is one pre-drilled hole near each corner. They are on the plain side, which should face up."
+        },
+        {
+          "keywords": [
+            "how long",
+            "too long",
+            "too slow",
+            "taking long",
+            "normal"
+          ],
+          "answer": "Most people take about 4 seconds on this step. Take your time."
+        }
+      ],
+      "typical": {
+        "medianSec": 4.4,
+        "p25Sec": 3,
+        "p75Sec": 6.3,
+        "n": 28
+      }
+    },
+    {
+      "id": "screws-into-legs",
+      "title": "Screws into the legs",
+      "instruction": "Take the 4 double-ended screws. Screw one halfway into the hole at the end of each leg, by hand, until about 20 mm sticks out.",
+      "durationSec": 5,
+      "camera": {
+        "position": [
+          650,
+          950,
+          1950
+        ],
+        "target": [
+          0,
+          280,
+          420
+        ]
+      },
+      "moves": [
+        {
+          "instance": "screw1",
+          "to": {
+            "pos": [
+              -330,
+              400,
+              520
+            ]
+          },
+          "start": 0,
+          "end": 0.55,
+          "spin": 4
+        },
+        {
+          "instance": "screw2",
+          "to": {
+            "pos": [
+              -110,
+              400,
+              520
+            ]
+          },
+          "start": 0.12,
+          "end": 0.67,
+          "spin": 4
+        },
+        {
+          "instance": "screw3",
+          "to": {
+            "pos": [
+              110,
+              400,
+              520
+            ]
+          },
+          "start": 0.24,
+          "end": 0.79,
+          "spin": 4
+        },
+        {
+          "instance": "screw4",
+          "to": {
+            "pos": [
+              330,
+              400,
+              520
+            ]
+          },
+          "start": 0.36,
+          "end": 0.91,
+          "spin": 4
+        }
+      ],
+      "active": [
+        "leg1",
+        "leg2",
+        "leg3",
+        "leg4",
+        "screw1",
+        "screw2",
+        "screw3",
+        "screw4"
+      ],
+      "hands": [
+        {
+          "side": "right",
+          "follow": "screw1",
+          "offset": [
+            0,
+            45,
+            95
+          ],
+          "rot": [
+            0,
+            0,
+            0
+          ],
+          "pose": "pinch",
+          "twist": 40
+        },
+        {
+          "side": "left",
+          "follow": "leg1",
+          "offset": [
+            -60,
+            110,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            90
+          ],
+          "pose": "grip"
+        }
+      ],
+      "arrows": [
+        {
+          "from": [
+            -330,
+            760,
+            520
+          ],
+          "to": [
+            -330,
+            680,
+            520
+          ]
+        },
+        {
+          "from": [
+            -110,
+            760,
+            520
+          ],
+          "to": [
+            -110,
+            680,
+            520
+          ]
+        },
+        {
+          "from": [
+            110,
+            760,
+            520
+          ],
+          "to": [
+            110,
+            680,
+            520
+          ]
+        },
+        {
+          "from": [
+            330,
+            760,
+            520
+          ],
+          "to": [
+            330,
+            680,
+            520
+          ]
+        }
+      ],
+      "tray": [
+        {
+          "part": "leg",
+          "count": 4
+        },
+        {
+          "part": "screw",
+          "count": 4
+        }
+      ],
+      "checklist": [
+        "All 4 legs have a screw in one end",
+        "About 20 mm of screw sticks out of each leg"
+      ],
+      "faq": [
+        {
+          "keywords": [
+            "which screw",
+            "screw",
+            "screws",
+            "bolt",
+            "hardware"
+          ],
+          "answer": "There is only one kind: the double-ended screw, threaded at both ends. Use all four, one per leg."
+        },
+        {
+          "keywords": [
+            "how far",
+            "halfway",
+            "deep",
+            "tight"
+          ],
+          "answer": "Halfway: about 20 mm in and 20 mm sticking out. Hand tight is enough."
+        },
+        {
+          "keywords": [
+            "which end",
+            "end of the leg",
+            "leg end"
+          ],
+          "answer": "Use the end of the leg that has the hole."
+        },
+        {
+          "keywords": [
+            "tool",
+            "screwdriver",
+            "allen",
+            "drill"
+          ],
+          "answer": "No tools. Turn the screws by hand."
+        }
+      ]
+    },
+    {
+      "id": "legs-onto-top",
+      "title": "Screw the legs on",
+      "instruction": "Turn each leg upside down so the screw points at a corner hole. Screw it in clockwise by hand until the leg sits flat against the top.",
+      "durationSec": 6,
+      "camera": {
+        "position": [
+          1150,
+          900,
+          700
+        ],
+        "target": [
+          0,
+          180,
+          0
+        ]
+      },
+      "moves": [
+        {
+          "kind": "rigid",
+          "group": [
+            "leg1",
+            "screw1"
+          ],
+          "pivot": [
+            -330,
+            200,
+            520
+          ],
+          "rotate": [
+            180,
+            0,
+            0
+          ],
+          "translate": [
+            80,
+            260,
+            -770
+          ],
+          "start": 0,
+          "end": 0.4
+        },
+        {
+          "instance": "leg1",
+          "to": {
+            "pos": [
+              -250,
+              250,
+              -250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0.45,
+          "end": 0.75,
+          "spin": 3
+        },
+        {
+          "instance": "screw1",
+          "to": {
+            "pos": [
+              -250,
+              50,
+              -250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0.45,
+          "end": 0.75,
+          "spin": 3
+        },
+        {
+          "kind": "rigid",
+          "group": [
+            "leg2",
+            "screw2"
+          ],
+          "pivot": [
+            -110,
+            200,
+            520
+          ],
+          "rotate": [
+            180,
+            0,
+            0
+          ],
+          "translate": [
+            360,
+            260,
+            -770
+          ],
+          "start": 0.08,
+          "end": 0.48000000000000004
+        },
+        {
+          "instance": "leg2",
+          "to": {
+            "pos": [
+              250,
+              250,
+              -250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0.53,
+          "end": 0.83,
+          "spin": 3
+        },
+        {
+          "instance": "screw2",
+          "to": {
+            "pos": [
+              250,
+              50,
+              -250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0.53,
+          "end": 0.83,
+          "spin": 3
+        },
+        {
+          "kind": "rigid",
+          "group": [
+            "leg3",
+            "screw3"
+          ],
+          "pivot": [
+            110,
+            200,
+            520
+          ],
+          "rotate": [
+            180,
+            0,
+            0
+          ],
+          "translate": [
+            -360,
+            260,
+            -270
+          ],
+          "start": 0.16,
+          "end": 0.56
+        },
+        {
+          "instance": "leg3",
+          "to": {
+            "pos": [
+              -250,
+              250,
+              250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0.61,
+          "end": 0.91,
+          "spin": 3
+        },
+        {
+          "instance": "screw3",
+          "to": {
+            "pos": [
+              -250,
+              50,
+              250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0.61,
+          "end": 0.91,
+          "spin": 3
+        },
+        {
+          "kind": "rigid",
+          "group": [
+            "leg4",
+            "screw4"
+          ],
+          "pivot": [
+            330,
+            200,
+            520
+          ],
+          "rotate": [
+            180,
+            0,
+            0
+          ],
+          "translate": [
+            -80,
+            260,
+            -270
+          ],
+          "start": 0.24,
+          "end": 0.64
+        },
+        {
+          "instance": "leg4",
+          "to": {
+            "pos": [
+              250,
+              250,
+              250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0.69,
+          "end": 0.99,
+          "spin": 3
+        },
+        {
+          "instance": "screw4",
+          "to": {
+            "pos": [
+              250,
+              50,
+              250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0.69,
+          "end": 0.99,
+          "spin": 3
+        }
+      ],
+      "active": [
+        "leg1",
+        "leg2",
+        "leg3",
+        "leg4",
+        "screw1",
+        "screw2",
+        "screw3",
+        "screw4"
+      ],
+      "hands": [
+        {
+          "side": "right",
+          "follow": "leg4",
+          "offset": [
+            75,
+            120,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            -90
+          ],
+          "pose": "grip",
+          "twist": 45
+        },
+        {
+          "side": "left",
+          "follow": "top",
+          "offset": [
+            140,
+            45,
+            -40
+          ],
+          "rot": [
+            0,
+            60,
+            0
+          ],
+          "pose": "flat"
+        }
+      ],
+      "arrows": [
+        {
+          "from": [
+            -250,
+            760,
+            -250
+          ],
+          "to": [
+            -250,
+            690,
+            -250
+          ]
+        },
+        {
+          "from": [
+            250,
+            760,
+            -250
+          ],
+          "to": [
+            250,
+            690,
+            -250
+          ]
+        },
+        {
+          "from": [
+            -250,
+            760,
+            250
+          ],
+          "to": [
+            -250,
+            690,
+            250
+          ]
+        },
+        {
+          "from": [
+            250,
+            760,
+            250
+          ],
+          "to": [
+            250,
+            690,
+            250
+          ]
+        }
+      ],
+      "tray": [
+        {
+          "part": "leg",
+          "count": 4
+        }
+      ],
+      "warning": "Hand tight only. Forcing it can strip the hole in the tabletop.",
+      "checklist": [
+        "All 4 legs are screwed in",
+        "Each leg sits flat against the tabletop, no gap"
+      ],
+      "faq": [
+        {
+          "keywords": [
+            "which way",
+            "direction",
+            "clockwise",
+            "turn"
+          ],
+          "answer": "Clockwise, looking down at the leg, like closing a jar."
+        },
+        {
+          "keywords": [
+            "gap",
+            "wobble",
+            "loose",
+            "not flat"
+          ],
+          "answer": "Keep turning the leg until it sits flat. If it stops early, unscrew it and screw it back in straight."
+        },
+        {
+          "keywords": [
+            "corner",
+            "which hole",
+            "where"
+          ],
+          "answer": "One leg per corner hole. It does not matter which leg goes where."
+        },
+        {
+          "keywords": [
+            "tight",
+            "strip",
+            "force"
+          ],
+          "answer": "Stop as soon as the leg is flat and firm. Hand tight is enough."
+        },
+        {
+          "keywords": [
+            "reach",
+            "awkward",
+            "far side",
+            "other side",
+            "turn the table"
+          ],
+          "answer": "Turn the tabletop on the cardboard so the next corner is in front of you. Most people (59%) do."
+        },
+        {
+          "keywords": [
+            "each leg",
+            "per leg",
+            "one leg",
+            "spinning",
+            "keep turning"
+          ],
+          "answer": "Each leg takes about 17 seconds of turning. Keep going until it sits flat."
+        },
+        {
+          "keywords": [
+            "how long",
+            "too long",
+            "too slow",
+            "taking long",
+            "normal"
+          ],
+          "answer": "Most people take about 1½ minutes on this step. Take your time."
+        }
+      ],
+      "typical": {
+        "medianSec": 91.6,
+        "p25Sec": 71.7,
+        "p75Sec": 108.9,
+        "n": 95
+      }
+    },
+    {
+      "id": "flip-upright",
+      "title": "Flip it over",
+      "instruction": "Lift the table, turn it over, and stand it on its legs. Lift rather than drag so no leg gets pulled sideways.",
+      "durationSec": 4.5,
+      "camera": {
+        "position": [
+          1300,
+          1100,
+          1500
+        ],
+        "target": [
+          0,
+          380,
+          0
+        ]
+      },
+      "moves": [
+        {
+          "kind": "rigid",
+          "group": [
+            "top",
+            "leg1",
+            "leg2",
+            "leg3",
+            "leg4",
+            "screw1",
+            "screw2",
+            "screw3",
+            "screw4"
+          ],
+          "translate": [
+            0,
+            400,
+            0
+          ],
+          "start": 0,
+          "end": 0.25
+        },
+        {
+          "kind": "rigid",
+          "group": [
+            "top",
+            "leg1",
+            "leg2",
+            "leg3",
+            "leg4",
+            "screw1",
+            "screw2",
+            "screw3",
+            "screw4"
+          ],
+          "pivot": [
+            0,
+            625,
+            0
+          ],
+          "rotate": [
+            180,
+            0,
+            0
+          ],
+          "start": 0.25,
+          "end": 0.75
+        },
+        {
+          "kind": "rigid",
+          "group": [
+            "top",
+            "leg1",
+            "leg2",
+            "leg3",
+            "leg4",
+            "screw1",
+            "screw2",
+            "screw3",
+            "screw4"
+          ],
+          "translate": [
+            0,
+            -400,
+            0
+          ],
+          "start": 0.75,
+          "end": 1
+        }
+      ],
+      "active": [
+        "top",
+        "leg1",
+        "leg2",
+        "leg3",
+        "leg4"
+      ],
+      "hands": [
+        {
+          "side": "right",
+          "follow": "leg4",
+          "mode": "local",
+          "offset": [
+            75,
+            40,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            -90
+          ],
+          "pose": "grip"
+        },
+        {
+          "side": "left",
+          "follow": "leg2",
+          "mode": "local",
+          "offset": [
+            75,
+            40,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            -90
+          ],
+          "pose": "grip"
+        }
+      ],
+      "showFinishedFace": true,
+      "tray": [],
+      "warning": "Lift, don’t drag. Dragging can snap a leg off its screw.",
+      "checklist": [
+        "Table stands on all 4 legs",
+        "It does not wobble"
+      ],
+      "faq": [
+        {
+          "keywords": [
+            "wobble",
+            "uneven",
+            "rock"
+          ],
+          "answer": "Flip it back and tighten the short leg until it sits flat, then try again."
+        },
+        {
+          "keywords": [
+            "heavy",
+            "alone",
+            "help",
+            "lift"
+          ],
+          "answer": "It is light enough to do alone: hold two legs, lift, and tip it over onto the other two."
+        },
+        {
+          "keywords": [
+            "done",
+            "finished",
+            "next"
+          ],
+          "answer": "That was the last step. Your LACK is done."
+        },
+        {
+          "keywords": [
+            "how long",
+            "too long",
+            "too slow",
+            "taking long",
+            "normal"
+          ],
+          "answer": "Most people take about 6 seconds on this step. Take your time."
+        }
+      ],
+      "typical": {
+        "medianSec": 5.6,
+        "p25Sec": 4.4,
+        "p75Sec": 7.6,
+        "n": 89
+      }
+    }
+  ],
+  "sources": [
+    {
+      "name": "IKEA ASM Dataset (Ben-Shabat et al., WACV 2021)",
+      "url": "https://ikeaasm.github.io/",
+      "license": "CC BY-NC 4.0",
+      "note": "Derived from action annotations of 95 LACK side table builds at ~24 fps."
+    }
+  ]
+}

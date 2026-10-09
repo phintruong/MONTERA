@@ -1,0 +1,1012 @@
+{
+ "source": {
+  "name": "IKEA Manuals at Work (Liu et al., NeurIPS 2024)",
+  "url": "https://github.com/yunongLiu1/IKEA-Manuals-at-Work",
+  "license": "CC BY 4.0",
+  "note": "Step times from manual steps aligned to real assembly videos from the internet."
+ },
+ "objects": {
+  "Bench/applaro": {
+   "videos": 1,
+   "steps": [
+    {
+     "medianSec": 5.9,
+     "p25Sec": 5.9,
+     "p75Sec": 5.9,
+     "n": 1
+    },
+    {
+     "medianSec": 15.1,
+     "p25Sec": 15.1,
+     "p75Sec": 15.1,
+     "n": 1
+    }
+   ]
+  },
+  "Bench/applaro_3": {
+   "videos": 1,
+   "steps": [
+    {
+     "medianSec": 28.5,
+     "p25Sec": 28.5,
+     "p75Sec": 28.5,
+     "n": 1
+    },
+    {
+     "medianSec": 29.5,
+     "p25Sec": 29.5,
+     "p75Sec": 29.5,
+     "n": 1
+    },
+    {
+     "medianSec": 88.9,
+     "p25Sec": 88.9,
+     "p75Sec": 88.9,
+     "n": 1
+    }
+   ]
+  },
+  "Bench/tjusig": {
+   "videos": 6,
+   "steps": [
+    {
+     "medianSec": 15.5,
+     "p25Sec": 8.6,
+     "p75Sec": 72.3,
+     "n": 3
+    },
+    {
+     "medianSec": 5.5,
+     "p25Sec": 4.5,
+     "p75Sec": 11.7,
+     "n": 3
+    },
+    {
+     "medianSec": 4,
+     "p25Sec": 3.5,
+     "p75Sec": 6.5,
+     "n": 4
+    },
+    {
+     "medianSec": 8.4,
+     "p25Sec": 7.8,
+     "p75Sec": 20.7,
+     "n": 4
+    },
+    {
+     "medianSec": 5.1,
+     "p25Sec": 2,
+     "p75Sec": 8.2,
+     "n": 2
+    },
+    {
+     "medianSec": 16.6,
+     "p25Sec": 14.9,
+     "p75Sec": 30.5,
+     "n": 6
+    }
+   ]
+  },
+  "Chair/applaro": {
+   "videos": 1,
+   "steps": [
+    {
+     "medianSec": 60.3,
+     "p25Sec": 60.3,
+     "p75Sec": 60.3,
+     "n": 1
+    },
+    {
+     "medianSec": 133.7,
+     "p25Sec": 133.7,
+     "p75Sec": 133.7,
+     "n": 1
+    },
+    {
+     "medianSec": 96,
+     "p25Sec": 96,
+     "p75Sec": 96,
+     "n": 1
+    }
+   ]
+  },
+  "Chair/applaro_3": {
+   "videos": 1,
+   "steps": [
+    {
+     "medianSec": 68.6,
+     "p25Sec": 68.6,
+     "p75Sec": 68.6,
+     "n": 1
+    },
+    {
+     "medianSec": 65.6,
+     "p25Sec": 65.6,
+     "p75Sec": 65.6,
+     "n": 1
+    }
+   ]
+  },
+  "Chair/bekvam_3017": {
+   "videos": 6,
+   "steps": [
+    {
+     "medianSec": 16.6,
+     "p25Sec": 11,
+     "p75Sec": 24.1,
+     "n": 6
+    },
+    {
+     "medianSec": 13.4,
+     "p25Sec": 12.8,
+     "p75Sec": 27.1,
+     "n": 6
+    },
+    {
+     "medianSec": 6,
+     "p25Sec": 4.8,
+     "p75Sec": 9.4,
+     "n": 6
+    },
+    {
+     "medianSec": 35.9,
+     "p25Sec": 21.1,
+     "p75Sec": 37,
+     "n": 6
+    },
+    {
+     "medianSec": 25.3,
+     "p25Sec": 16.9,
+     "p75Sec": 32.2,
+     "n": 6
+    }
+   ]
+  },
+  "Chair/grubban": {
+   "videos": 2,
+   "steps": [
+    {
+     "medianSec": 38.6,
+     "p25Sec": 20.3,
+     "p75Sec": 56.9,
+     "n": 2
+    },
+    {
+     "medianSec": 14.2,
+     "p25Sec": 7.5,
+     "p75Sec": 21,
+     "n": 2
+    },
+    {
+     "medianSec": 8.9,
+     "p25Sec": 4.6,
+     "p75Sec": 13.2,
+     "n": 2
+    },
+    {
+     "medianSec": 27,
+     "p25Sec": 21.3,
+     "p75Sec": 32.7,
+     "n": 2
+    }
+   ]
+  },
+  "Chair/ingolf": {
+   "videos": 1,
+   "steps": [
+    {
+     "medianSec": 44.4,
+     "p25Sec": 44.4,
+     "p75Sec": 44.4,
+     "n": 1
+    },
+    {
+     "medianSec": 18.8,
+     "p25Sec": 18.8,
+     "p75Sec": 18.8,
+     "n": 1
+    },
+    {
+     "medianSec": 45.8,
+     "p25Sec": 45.8,
+     "p75Sec": 45.8,
+     "n": 1
+    }
+   ]
+  },
+  "Chair/leifarne": {
+   "videos": 1,
+   "steps": [
+    {
+     "medianSec": 56.3,
+     "p25Sec": 56.3,
+     "p75Sec": 56.3,
+     "n": 1
+    }
+   ]
+  },
+  "Chair/lisabo": {
+   "videos": 1,
+   "steps": [
+    {
+     "medianSec": 9.6,
+     "p25Sec": 9.6,
+     "p75Sec": 9.6,
+     "n": 1
+    },
+    {
+     "medianSec": 8.9,
+     "p25Sec": 8.9,
+     "p75Sec": 8.9,
+     "n": 1
+    },
+    {
+     "medianSec": 9.6,
+     "p25Sec": 9.6,
+     "p75Sec": 9.6,
+     "n": 1
+    },
+    {
+     "medianSec": 23,
+     "p25Sec": 23,
+     "p75Sec": 23,
+     "n": 1
+    }
+   ]
+  },
+  "Chair/mammut_1": {
+   "videos": 6,
+   "steps": [
+    {
+     "medianSec": 46.4,
+     "p25Sec": 25,
+     "p75Sec": 65,
+     "n": 6
+    },
+    {
+     "medianSec": 9.9,
+     "p25Sec": 6.2,
+     "p75Sec": 67.7,
+     "n": 6
+    }
+   ]
+  },
+  "Chair/mammut_2": {
+   "videos": 1,
+   "steps": [
+    {
+     "medianSec": 29.7,
+     "p25Sec": 29.7,
+     "p75Sec": 29.7,
+     "n": 1
+    }
+   ]
+  },
+  "Chair/marius": {
+   "videos": 6,
+   "steps": [
+    {
+     "medianSec": 45.4,
+     "p25Sec": 13.2,
+     "p75Sec": 67.5,
+     "n": 6
+    },
+    {
+     "medianSec": 101.8,
+     "p25Sec": 34.9,
+     "p75Sec": 117.6,
+     "n": 6
+    }
+   ]
+  },
+  "Chair/nordviken": {
+   "videos": 1,
+   "steps": [
+    {
+     "medianSec": 28,
+     "p25Sec": 28,
+     "p75Sec": 28,
+     "n": 1
+    },
+    {
+     "medianSec": 63.3,
+     "p25Sec": 63.3,
+     "p75Sec": 63.3,
+     "n": 1
+    },
+    {
+     "medianSec": 48.2,
+     "p25Sec": 48.2,
+     "p75Sec": 48.2,
+     "n": 1
+    },
+    {
+     "medianSec": 161.2,
+     "p25Sec": 161.2,
+     "p75Sec": 161.2,
+     "n": 1
+    }
+   ]
+  },
+  "Chair/poang_1": {
+   "videos": 2,
+   "steps": [
+    {
+     "medianSec": 12.3,
+     "p25Sec": 8.1,
+     "p75Sec": 16.5,
+     "n": 2
+    },
+    {
+     "medianSec": 25.4,
+     "p25Sec": 18.6,
+     "p75Sec": 32.3,
+     "n": 2
+    },
+    {
+     "medianSec": 75.3,
+     "p25Sec": 57.3,
+     "p75Sec": 93.3,
+     "n": 2
+    }
+   ]
+  },
+  "Chair/poang_2": {
+   "videos": 7,
+   "steps": [
+    {
+     "medianSec": 9.4,
+     "p25Sec": 5,
+     "p75Sec": 13.5,
+     "n": 7
+    },
+    {
+     "medianSec": 10,
+     "p25Sec": 4.8,
+     "p75Sec": 12.6,
+     "n": 7
+    },
+    {
+     "medianSec": 17,
+     "p25Sec": 13.3,
+     "p75Sec": 22.6,
+     "n": 7
+    },
+    {
+     "medianSec": 24,
+     "p25Sec": 15.7,
+     "p75Sec": 45,
+     "n": 7
+    },
+    {
+     "medianSec": 20.6,
+     "p25Sec": 14.4,
+     "p75Sec": 24.4,
+     "n": 7
+    },
+    {
+     "medianSec": 14.9,
+     "p25Sec": 9.2,
+     "p75Sec": 25.9,
+     "n": 7
+    }
+   ]
+  },
+  "Chair/ronninge": {
+   "videos": 1,
+   "steps": [
+    {
+     "medianSec": 22.9,
+     "p25Sec": 22.9,
+     "p75Sec": 22.9,
+     "n": 1
+    },
+    {
+     "medianSec": 13.4,
+     "p25Sec": 13.4,
+     "p75Sec": 13.4,
+     "n": 1
+    },
+    {
+     "medianSec": 113.4,
+     "p25Sec": 113.4,
+     "p75Sec": 113.4,
+     "n": 1
+    },
+    {
+     "medianSec": 222.4,
+     "p25Sec": 222.4,
+     "p75Sec": 222.4,
+     "n": 1
+    },
+    {
+     "medianSec": 260.6,
+     "p25Sec": 260.6,
+     "p75Sec": 260.6,
+     "n": 1
+    },
+    {
+     "medianSec": 156.6,
+     "p25Sec": 156.6,
+     "p75Sec": 156.6,
+     "n": 1
+    },
+    {
+     "medianSec": 154.9,
+     "p25Sec": 154.9,
+     "p75Sec": 154.9,
+     "n": 1
+    }
+   ]
+  },
+  "Chair/stefan": {
+   "videos": 1,
+   "steps": [
+    {
+     "medianSec": 86,
+     "p25Sec": 86,
+     "p75Sec": 86,
+     "n": 1
+    },
+    {
+     "medianSec": 27.9,
+     "p25Sec": 27.9,
+     "p75Sec": 27.9,
+     "n": 1
+    },
+    {
+     "medianSec": 9.5,
+     "p25Sec": 9.5,
+     "p75Sec": 9.5,
+     "n": 1
+    }
+   ]
+  },
+  "Chair/stig": {
+   "videos": 4,
+   "steps": [
+    {
+     "medianSec": 14,
+     "p25Sec": 2.8,
+     "p75Sec": 18.8,
+     "n": 3
+    },
+    {
+     "medianSec": 12,
+     "p25Sec": 10.7,
+     "p75Sec": 431.4,
+     "n": 4
+    },
+    {
+     "medianSec": 27,
+     "p25Sec": 13.3,
+     "p75Sec": 236.9,
+     "n": 4
+    },
+    {
+     "medianSec": 18.8,
+     "p25Sec": 8.1,
+     "p75Sec": 117.1,
+     "n": 4
+    },
+    {
+     "medianSec": 14.4,
+     "p25Sec": 3,
+     "p75Sec": 247.6,
+     "n": 3
+    },
+    {
+     "medianSec": 15.2,
+     "p25Sec": 12.2,
+     "p75Sec": 216,
+     "n": 4
+    },
+    {
+     "medianSec": 30,
+     "p25Sec": 27.1,
+     "p75Sec": 278.8,
+     "n": 4
+    },
+    {
+     "medianSec": 43.5,
+     "p25Sec": 23.1,
+     "p75Sec": 805.4,
+     "n": 4
+    },
+    {
+     "medianSec": 16.8,
+     "p25Sec": 8.3,
+     "p75Sec": 84.8,
+     "n": 4
+    }
+   ]
+  },
+  "Chair/sundvik": {
+   "videos": 1,
+   "steps": [
+    {
+     "medianSec": 13.7,
+     "p25Sec": 13.7,
+     "p75Sec": 13.7,
+     "n": 1
+    },
+    {
+     "medianSec": 129.6,
+     "p25Sec": 129.6,
+     "p75Sec": 129.6,
+     "n": 1
+    },
+    {
+     "medianSec": 0.9,
+     "p25Sec": 0.9,
+     "p75Sec": 0.9,
+     "n": 1
+    },
+    {
+     "medianSec": 55.1,
+     "p25Sec": 55.1,
+     "p75Sec": 55.1,
+     "n": 1
+    }
+   ]
+  },
+  "Chair/teodores": {
+   "videos": 6,
+   "steps": [
+    {
+     "medianSec": 89.4,
+     "p25Sec": 73.1,
+     "p75Sec": 102.5,
+     "n": 6
+    },
+    {
+     "medianSec": 9.3,
+     "p25Sec": 5,
+     "p75Sec": 10.7,
+     "n": 6
+    },
+    {
+     "medianSec": 19.6,
+     "p25Sec": 14.7,
+     "p75Sec": 56,
+     "n": 4
+    },
+    {
+     "medianSec": 43.5,
+     "p25Sec": 31.1,
+     "p75Sec": 63.3,
+     "n": 6
+    },
+    {
+     "medianSec": 49.3,
+     "p25Sec": 29.3,
+     "p75Sec": 58.5,
+     "n": 6
+    },
+    {
+     "medianSec": 101.3,
+     "p25Sec": 67.6,
+     "p75Sec": 201.1,
+     "n": 6
+    }
+   ]
+  },
+  "Chair/tobias": {
+   "videos": 1,
+   "steps": [
+    {
+     "medianSec": 84,
+     "p25Sec": 84,
+     "p75Sec": 84,
+     "n": 1
+    }
+   ]
+  },
+  "Chair/vedbo": {
+   "videos": 2,
+   "steps": [
+    {
+     "medianSec": 61.6,
+     "p25Sec": 56.2,
+     "p75Sec": 67,
+     "n": 2
+    },
+    {
+     "medianSec": 143.4,
+     "p25Sec": 116.3,
+     "p75Sec": 170.5,
+     "n": 2
+    },
+    {
+     "medianSec": 171.9,
+     "p25Sec": 130.8,
+     "p75Sec": 213,
+     "n": 2
+    }
+   ]
+  },
+  "Desk/pahl": {
+   "videos": 4,
+   "steps": [
+    {
+     "medianSec": 128.6,
+     "p25Sec": 62.9,
+     "p75Sec": 285.4,
+     "n": 4
+    },
+    {
+     "medianSec": 20.3,
+     "p25Sec": 17,
+     "p75Sec": 37.5,
+     "n": 4
+    },
+    {
+     "medianSec": 125.2,
+     "p25Sec": 113.7,
+     "p75Sec": 170,
+     "n": 4
+    }
+   ]
+  },
+  "Misc/satsumas_2": {
+   "videos": 3,
+   "steps": [
+    {
+     "medianSec": 83.5,
+     "p25Sec": 48.4,
+     "p75Sec": 84.5,
+     "n": 3
+    },
+    {
+     "medianSec": 91.1,
+     "p25Sec": 46.6,
+     "p75Sec": 135.6,
+     "n": 2
+    },
+    {
+     "medianSec": 20.4,
+     "p25Sec": 15.1,
+     "p75Sec": 32.1,
+     "n": 3
+    },
+    {
+     "medianSec": 150.6,
+     "p25Sec": 67.1,
+     "p75Sec": 207.1,
+     "n": 3
+    }
+   ]
+  },
+  "Misc/vesken": {
+   "videos": 5,
+   "steps": [
+    {
+     "medianSec": 20,
+     "p25Sec": 18.1,
+     "p75Sec": 26.1,
+     "n": 5
+    },
+    {
+     "medianSec": 11.4,
+     "p25Sec": 9.6,
+     "p75Sec": 20,
+     "n": 5
+    },
+    {
+     "medianSec": 10.3,
+     "p25Sec": 6.8,
+     "p75Sec": 29,
+     "n": 5
+    },
+    {
+     "medianSec": 13.5,
+     "p25Sec": 11.2,
+     "p75Sec": 23.8,
+     "n": 5
+    }
+   ]
+  },
+  "Misc/vittsjo_2": {
+   "videos": 2,
+   "steps": [
+    {
+     "medianSec": 19.5,
+     "p25Sec": 11.1,
+     "p75Sec": 27.8,
+     "n": 2
+    },
+    {
+     "medianSec": 13.4,
+     "p25Sec": 11.7,
+     "p75Sec": 15,
+     "n": 2
+    },
+    {
+     "medianSec": 7.4,
+     "p25Sec": 7,
+     "p75Sec": 7.7,
+     "n": 2
+    }
+   ]
+  },
+  "Shelf/laiva": {
+   "videos": 8,
+   "steps": [
+    {
+     "medianSec": 44.7,
+     "p25Sec": 43.3,
+     "p75Sec": 78.1,
+     "n": 8
+    },
+    {
+     "medianSec": 32.2,
+     "p25Sec": 26.2,
+     "p75Sec": 55.3,
+     "n": 8
+    },
+    {
+     "medianSec": 50.4,
+     "p25Sec": 28,
+     "p75Sec": 90.3,
+     "n": 8
+    },
+    {
+     "medianSec": 39.7,
+     "p25Sec": 32.2,
+     "p75Sec": 71.2,
+     "n": 5
+    },
+    {
+     "medianSec": 46.7,
+     "p25Sec": 30.6,
+     "p75Sec": 53.5,
+     "n": 7
+    }
+   ]
+  },
+  "Table/applaro": {
+   "videos": 1,
+   "steps": [
+    {
+     "medianSec": 68.6,
+     "p25Sec": 68.6,
+     "p75Sec": 68.6,
+     "n": 1
+    }
+   ]
+  },
+  "Table/fjallbo": {
+   "videos": 1,
+   "steps": [
+    {
+     "medianSec": 18,
+     "p25Sec": 18,
+     "p75Sec": 18,
+     "n": 1
+    },
+    {
+     "medianSec": 10.4,
+     "p25Sec": 10.4,
+     "p75Sec": 10.4,
+     "n": 1
+    },
+    {
+     "medianSec": 21.7,
+     "p25Sec": 21.7,
+     "p75Sec": 21.7,
+     "n": 1
+    }
+   ]
+  },
+  "Table/gladom": {
+   "videos": 8,
+   "steps": [
+    {
+     "medianSec": 27.6,
+     "p25Sec": 20.4,
+     "p75Sec": 70.2,
+     "n": 8
+    },
+    {
+     "medianSec": 30.9,
+     "p25Sec": 29.7,
+     "p75Sec": 75.5,
+     "n": 8
+    },
+    {
+     "medianSec": 19.8,
+     "p25Sec": 19.6,
+     "p75Sec": 52.8,
+     "n": 8
+    }
+   ]
+  },
+  "Table/lunnarp": {
+   "videos": 1,
+   "steps": [
+    {
+     "medianSec": 25.8,
+     "p25Sec": 25.8,
+     "p75Sec": 25.8,
+     "n": 1
+    },
+    {
+     "medianSec": 9.4,
+     "p25Sec": 9.4,
+     "p75Sec": 9.4,
+     "n": 1
+    },
+    {
+     "medianSec": 11.1,
+     "p25Sec": 11.1,
+     "p75Sec": 11.1,
+     "n": 1
+    },
+    {
+     "medianSec": 4.9,
+     "p25Sec": 4.9,
+     "p75Sec": 4.9,
+     "n": 1
+    },
+    {
+     "medianSec": 7,
+     "p25Sec": 7,
+     "p75Sec": 7,
+     "n": 1
+    },
+    {
+     "medianSec": 12.2,
+     "p25Sec": 12.2,
+     "p75Sec": 12.2,
+     "n": 1
+    }
+   ]
+  },
+  "Table/satsumas": {
+   "videos": 1,
+   "steps": [
+    {
+     "medianSec": 50.6,
+     "p25Sec": 50.6,
+     "p75Sec": 50.6,
+     "n": 1
+    },
+    {
+     "medianSec": 79.9,
+     "p25Sec": 79.9,
+     "p75Sec": 79.9,
+     "n": 1
+    },
+    {
+     "medianSec": 36.8,
+     "p25Sec": 36.8,
+     "p75Sec": 36.8,
+     "n": 1
+    }
+   ]
+  },
+  "Table/tornviken": {
+   "videos": 1,
+   "steps": [
+    {
+     "medianSec": 21.7,
+     "p25Sec": 21.7,
+     "p75Sec": 21.7,
+     "n": 1
+    },
+    {
+     "medianSec": 41.1,
+     "p25Sec": 41.1,
+     "p75Sec": 41.1,
+     "n": 1
+    },
+    {
+     "medianSec": 8.9,
+     "p25Sec": 8.9,
+     "p75Sec": 8.9,
+     "n": 1
+    },
+    {
+     "medianSec": 31.7,
+     "p25Sec": 31.7,
+     "p75Sec": 31.7,
+     "n": 1
+    },
+    {
+     "medianSec": 25.5,
+     "p25Sec": 25.5,
+     "p75Sec": 25.5,
+     "n": 1
+    },
+    {
+     "medianSec": 9.5,
+     "p25Sec": 9.5,
+     "p75Sec": 9.5,
+     "n": 1
+    },
+    {
+     "medianSec": 13.9,
+     "p25Sec": 13.9,
+     "p75Sec": 13.9,
+     "n": 1
+    },
+    {
+     "medianSec": 11.7,
+     "p25Sec": 11.7,
+     "p75Sec": 11.7,
+     "n": 1
+    },
+    {
+     "medianSec": 25.9,
+     "p25Sec": 25.9,
+     "p75Sec": 25.9,
+     "n": 1
+    },
+    {
+     "medianSec": 12.5,
+     "p25Sec": 12.5,
+     "p75Sec": 12.5,
+     "n": 1
+    }
+   ]
+  },
+  "Table/vittsjo_1": {
+   "videos": 1,
+   "steps": [
+    {
+     "medianSec": 2.6,
+     "p25Sec": 2.6,
+     "p75Sec": 2.6,
+     "n": 1
+    },
+    {
+     "medianSec": 0.8,
+     "p25Sec": 0.8,
+     "p75Sec": 0.8,
+     "n": 1
+    },
+    {
+     "medianSec": 1.2,
+     "p25Sec": 1.2,
+     "p75Sec": 1.2,
+     "n": 1
+    }
+   ]
+  },
+  "Table/vittsjo_2": {
+   "videos": 2,
+   "steps": [
+    {
+     "medianSec": 20.7,
+     "p25Sec": 3.7,
+     "p75Sec": 37.7,
+     "n": 2
+    },
+    {
+     "medianSec": 25.2,
+     "p25Sec": 22.5,
+     "p75Sec": 27.9,
+     "n": 2
+    },
+    {
+     "medianSec": 25.1,
+     "p25Sec": 18,
+     "p75Sec": 32.3,
+     "n": 2
+    },
+    {
+     "medianSec": 38,
+     "p25Sec": 13.1,
+     "p75Sec": 62.9,
+     "n": 2
+    },
+    {
+     "medianSec": 41.2,
+     "p25Sec": 3.5,
+     "p75Sec": 78.9,
+     "n": 2
+    }
+   ]
+  }
+ }
+}

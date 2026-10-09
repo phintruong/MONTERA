@@ -1,0 +1,66 @@
+{
+  "source": {
+    "name": "IKEA ASM Dataset (Ben-Shabat et al., WACV 2021)",
+    "url": "https://ikeaasm.github.io/",
+    "license": "CC BY-NC 4.0",
+    "note": "Derived from action annotations of 95 LACK side table builds at ~24 fps."
+  },
+  "builds": 95,
+  "total": {
+    "medianSec": 106.4,
+    "p25Sec": 86,
+    "p75Sec": 120.1,
+    "n": 95
+  },
+  "totalFloor": {
+    "medianSec": 105,
+    "p25Sec": 87,
+    "p75Sec": 118,
+    "n": 54
+  },
+  "totalTable": {
+    "medianSec": 110.3,
+    "p25Sec": 83.1,
+    "p75Sec": 120.6,
+    "n": 41
+  },
+  "steps": {
+    "top-down": {
+      "medianSec": 4.4,
+      "p25Sec": 3,
+      "p75Sec": 6.3,
+      "n": 28
+    },
+    "legs-onto-top": {
+      "medianSec": 91.6,
+      "p25Sec": 71.7,
+      "p75Sec": 108.9,
+      "n": 95
+    },
+    "flip-upright": {
+      "medianSec": 5.6,
+      "p25Sec": 4.4,
+      "p75Sec": 7.6,
+      "n": 89
+    }
+  },
+  "perLeg": {
+    "align": {
+      "medianSec": 1.7,
+      "p25Sec": 1.2,
+      "p75Sec": 2.3,
+      "n": 311
+    },
+    "spin": {
+      "medianSec": 16.7,
+      "p25Sec": 13,
+      "p75Sec": 20.3,
+      "n": 379
+    }
+  },
+  "pctRealigned": 1,
+  "pctRespun": 4,
+  "pctSeparateTighten": 46,
+  "pctRotatedTable": 59,
+  "pctFlippedTwice": 1
+}

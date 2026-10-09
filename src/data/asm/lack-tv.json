@@ -1,0 +1,72 @@
+{
+  "source": {
+    "name": "IKEA ASM Dataset (Ben-Shabat et al., WACV 2021)",
+    "url": "https://ikeaasm.github.io/",
+    "license": "CC BY-NC 4.0",
+    "note": "Derived from action annotations of 91 LACK TV bench builds at ~24 fps."
+  },
+  "builds": 91,
+  "total": {
+    "medianSec": 122.1,
+    "p25Sec": 107.3,
+    "p75Sec": 140.2,
+    "n": 91
+  },
+  "totalFloor": {
+    "medianSec": 121,
+    "p25Sec": 107.3,
+    "p75Sec": 135,
+    "n": 50
+  },
+  "totalTable": {
+    "medianSec": 124.7,
+    "p25Sec": 108.4,
+    "p75Sec": 145.4,
+    "n": 41
+  },
+  "steps": {
+    "top-down": {
+      "medianSec": 3.8,
+      "p25Sec": 2.5,
+      "p75Sec": 5.7,
+      "n": 36
+    },
+    "legs-onto-top": {
+      "medianSec": 87.3,
+      "p25Sec": 76.4,
+      "p75Sec": 102.4,
+      "n": 91
+    },
+    "flip-upright": {
+      "medianSec": 5.4,
+      "p25Sec": 4.5,
+      "p75Sec": 8.4,
+      "n": 88
+    },
+    "shelf-in": {
+      "medianSec": 16.4,
+      "p25Sec": 12.4,
+      "p75Sec": 22.4,
+      "n": 91
+    }
+  },
+  "perLeg": {
+    "align": {
+      "medianSec": 1.8,
+      "p25Sec": 1.4,
+      "p75Sec": 2.4,
+      "n": 305
+    },
+    "spin": {
+      "medianSec": 15.8,
+      "p25Sec": 12.5,
+      "p75Sec": 19,
+      "n": 365
+    }
+  },
+  "pctRealigned": 3,
+  "pctRespun": 11,
+  "pctSeparateTighten": 55,
+  "pctRotatedTable": 26,
+  "pctFlippedTwice": 1
+}

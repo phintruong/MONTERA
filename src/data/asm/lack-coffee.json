@@ -1,0 +1,72 @@
+{
+  "source": {
+    "name": "IKEA ASM Dataset (Ben-Shabat et al., WACV 2021)",
+    "url": "https://ikeaasm.github.io/",
+    "license": "CC BY-NC 4.0",
+    "note": "Derived from action annotations of 95 LACK coffee table builds at ~24 fps."
+  },
+  "builds": 95,
+  "total": {
+    "medianSec": 132.8,
+    "p25Sec": 119.9,
+    "p75Sec": 159.5,
+    "n": 95
+  },
+  "totalFloor": {
+    "medianSec": 134.3,
+    "p25Sec": 122.5,
+    "p75Sec": 161.2,
+    "n": 55
+  },
+  "totalTable": {
+    "medianSec": 131.2,
+    "p25Sec": 119.1,
+    "p75Sec": 154.5,
+    "n": 40
+  },
+  "steps": {
+    "top-down": {
+      "medianSec": 4.8,
+      "p25Sec": 3.8,
+      "p75Sec": 6.5,
+      "n": 37
+    },
+    "legs-onto-top": {
+      "medianSec": 87.6,
+      "p25Sec": 77.8,
+      "p75Sec": 107.5,
+      "n": 94
+    },
+    "flip-upright": {
+      "medianSec": 7.6,
+      "p25Sec": 6.2,
+      "p75Sec": 9.5,
+      "n": 92
+    },
+    "shelf-in": {
+      "medianSec": 24.7,
+      "p25Sec": 18.8,
+      "p75Sec": 33,
+      "n": 94
+    }
+  },
+  "perLeg": {
+    "align": {
+      "medianSec": 1.9,
+      "p25Sec": 1.4,
+      "p75Sec": 2.5,
+      "n": 275
+    },
+    "spin": {
+      "medianSec": 15.8,
+      "p25Sec": 13.4,
+      "p75Sec": 19.5,
+      "n": 372
+    }
+  },
+  "pctRealigned": 4,
+  "pctRespun": 9,
+  "pctSeparateTighten": 53,
+  "pctRotatedTable": 34,
+  "pctFlippedTwice": 2
+}

@@ -1,0 +1,2028 @@
+{
+  "product": {
+    "id": "lack-coffee",
+    "name": "LACK coffee table",
+    "dims": "900 × 550 × 450 mm"
+  },
+  "parts": {
+    "cardboard": {
+      "name": "Cardboard (from the box)",
+      "shape": "box",
+      "size": [
+        1200,
+        4,
+        870
+      ],
+      "color": "#dcc093"
+    },
+    "top": {
+      "name": "Tabletop",
+      "shape": "box",
+      "size": [
+        900,
+        50,
+        550
+      ],
+      "color": "#fbfaf6",
+      "finishedFace": "+y",
+      "finishedLabel": "Glossy side"
+    },
+    "leg": {
+      "name": "Leg",
+      "shape": "box",
+      "size": [
+        50,
+        400,
+        50
+      ],
+      "color": "#fbfaf6"
+    },
+    "shelf": {
+      "name": "Shelf",
+      "shape": "box",
+      "size": [
+        890,
+        13,
+        448
+      ],
+      "color": "#fbfaf6"
+    },
+    "screw": {
+      "name": "Double-ended screw (115980)",
+      "shape": "screw",
+      "size": [
+        8,
+        40,
+        8
+      ],
+      "color": "#9a9fa5",
+      "hardware": true
+    },
+    "bracket": {
+      "name": "Angle bracket (120298)",
+      "shape": "box",
+      "size": [
+        24,
+        22,
+        16
+      ],
+      "color": "#9a9fa5",
+      "hardware": true
+    },
+    "screwLong": {
+      "name": "Screw 108530 (longer)",
+      "shape": "screw",
+      "size": [
+        4,
+        16,
+        4
+      ],
+      "color": "#9a9fa5",
+      "hardware": true
+    },
+    "screwShort": {
+      "name": "Screw 109041 (shorter)",
+      "shape": "screw",
+      "size": [
+        4,
+        12,
+        4
+      ],
+      "color": "#9a9fa5",
+      "hardware": true
+    },
+    "guide": {
+      "name": "Metal drilling guide (120938)",
+      "shape": "box",
+      "size": [
+        120,
+        3,
+        22
+      ],
+      "color": "#9a9fa5",
+      "hardware": true
+    }
+  },
+  "instances": [
+    {
+      "id": "cardboard",
+      "part": "cardboard",
+      "initial": {
+        "pos": [
+          0,
+          -2,
+          0
+        ]
+      },
+      "enterStep": 0
+    },
+    {
+      "id": "top",
+      "part": "top",
+      "initial": {
+        "pos": [
+          0,
+          320,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      "enterStep": 0
+    },
+    {
+      "id": "screw1",
+      "part": "screw",
+      "initial": {
+        "pos": [
+          -90,
+          4,
+          535
+        ],
+        "rot": [
+          0,
+          0,
+          90
+        ]
+      },
+      "enterStep": 1
+    },
+    {
+      "id": "screw2",
+      "part": "screw",
+      "initial": {
+        "pos": [
+          -30,
+          4,
+          535
+        ],
+        "rot": [
+          0,
+          0,
+          90
+        ]
+      },
+      "enterStep": 1
+    },
+    {
+      "id": "screw3",
+      "part": "screw",
+      "initial": {
+        "pos": [
+          30,
+          4,
+          535
+        ],
+        "rot": [
+          0,
+          0,
+          90
+        ]
+      },
+      "enterStep": 1
+    },
+    {
+      "id": "screw4",
+      "part": "screw",
+      "initial": {
+        "pos": [
+          90,
+          4,
+          535
+        ],
+        "rot": [
+          0,
+          0,
+          90
+        ]
+      },
+      "enterStep": 1
+    },
+    {
+      "id": "leg1",
+      "part": "leg",
+      "initial": {
+        "pos": [
+          -330,
+          200,
+          655
+        ]
+      },
+      "enterStep": 2
+    },
+    {
+      "id": "leg2",
+      "part": "leg",
+      "initial": {
+        "pos": [
+          -110,
+          200,
+          655
+        ]
+      },
+      "enterStep": 2
+    },
+    {
+      "id": "leg3",
+      "part": "leg",
+      "initial": {
+        "pos": [
+          110,
+          200,
+          655
+        ]
+      },
+      "enterStep": 2
+    },
+    {
+      "id": "leg4",
+      "part": "leg",
+      "initial": {
+        "pos": [
+          330,
+          200,
+          655
+        ]
+      },
+      "enterStep": 2
+    },
+    {
+      "id": "bracket3",
+      "part": "bracket",
+      "initial": {
+        "pos": [
+          -60,
+          11,
+          385.0000000000001
+        ]
+      },
+      "enterStep": 3
+    },
+    {
+      "id": "bracket4",
+      "part": "bracket",
+      "initial": {
+        "pos": [
+          60,
+          11,
+          385.0000000000001
+        ]
+      },
+      "enterStep": 3
+    },
+    {
+      "id": "bracket1",
+      "part": "bracket",
+      "initial": {
+        "pos": [
+          -60,
+          11,
+          385.0000000000001
+        ]
+      },
+      "enterStep": 4
+    },
+    {
+      "id": "bracket2",
+      "part": "bracket",
+      "initial": {
+        "pos": [
+          60,
+          11,
+          385.0000000000001
+        ]
+      },
+      "enterStep": 4
+    },
+    {
+      "id": "shelf",
+      "part": "shelf",
+      "initial": {
+        "pos": [
+          0,
+          6.5,
+          639
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      "enterStep": 6
+    },
+    {
+      "id": "sscrew1",
+      "part": "screwShort",
+      "initial": {
+        "pos": [
+          -45,
+          2,
+          475
+        ],
+        "rot": [
+          0,
+          0,
+          90
+        ]
+      },
+      "enterStep": 7
+    },
+    {
+      "id": "sscrew2",
+      "part": "screwShort",
+      "initial": {
+        "pos": [
+          -15,
+          2,
+          475
+        ],
+        "rot": [
+          0,
+          0,
+          90
+        ]
+      },
+      "enterStep": 7
+    },
+    {
+      "id": "sscrew3",
+      "part": "screwShort",
+      "initial": {
+        "pos": [
+          15,
+          2,
+          475
+        ],
+        "rot": [
+          0,
+          0,
+          90
+        ]
+      },
+      "enterStep": 7
+    },
+    {
+      "id": "sscrew4",
+      "part": "screwShort",
+      "initial": {
+        "pos": [
+          45,
+          2,
+          475
+        ],
+        "rot": [
+          0,
+          0,
+          90
+        ]
+      },
+      "enterStep": 7
+    }
+  ],
+  "steps": [
+    {
+      "id": "top-down",
+      "title": "Tabletop glossy side down",
+      "instruction": "Lay the cardboard flat. Put the tabletop on it with the glossy side facing down, so the pre-drilled holes face up.",
+      "durationSec": 3.5,
+      "camera": {
+        "position": [
+          720,
+          760,
+          1350
+        ],
+        "target": [
+          0,
+          60,
+          0
+        ]
+      },
+      "moves": [
+        {
+          "instance": "top",
+          "to": {
+            "pos": [
+              0,
+              25,
+              0
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "active": [
+        "top"
+      ],
+      "hands": [
+        {
+          "side": "right",
+          "follow": "top",
+          "mode": "local",
+          "offset": [
+            475,
+            -45,
+            0
+          ],
+          "rot": [
+            180,
+            90,
+            0
+          ],
+          "pose": "flat"
+        },
+        {
+          "side": "left",
+          "follow": "top",
+          "mode": "local",
+          "offset": [
+            -475,
+            -45,
+            0
+          ],
+          "rot": [
+            180,
+            -90,
+            0
+          ],
+          "pose": "flat"
+        }
+      ],
+      "showFinishedFace": true,
+      "arrows": [
+        {
+          "from": [
+            0,
+            260,
+            0
+          ],
+          "to": [
+            0,
+            90,
+            0
+          ]
+        }
+      ],
+      "tray": [
+        {
+          "part": "top",
+          "count": 1
+        },
+        {
+          "part": "cardboard",
+          "count": 1
+        }
+      ],
+      "warning": "Glossy side DOWN. If you can see the shiny surface, flip it. The holes must face you.",
+      "checklist": [
+        "Tabletop is on the cardboard, glossy side down",
+        "I can see the 4 corner holes"
+      ],
+      "faq": [
+        {
+          "keywords": [
+            "which side",
+            "which way",
+            "up",
+            "down",
+            "glossy",
+            "shiny",
+            "flip"
+          ],
+          "answer": "Glossy side down on the cardboard. The side with the holes faces up toward you."
+        },
+        {
+          "keywords": [
+            "cardboard",
+            "floor",
+            "scratch"
+          ],
+          "answer": "Use the flattened box as a mat so the glossy top does not get scratched."
+        },
+        {
+          "keywords": [
+            "how long",
+            "too long",
+            "too slow",
+            "taking long",
+            "normal"
+          ],
+          "answer": "Most people take about 5 seconds on this step. Take your time."
+        }
+      ],
+      "typical": {
+        "medianSec": 4.8,
+        "p25Sec": 3.8,
+        "p75Sec": 6.5,
+        "n": 37
+      }
+    },
+    {
+      "id": "screws-into-top",
+      "title": "Screws into the tabletop",
+      "instruction": "Take the 4 double-ended screws (115980). Screw one into each corner hole of the tabletop by hand, until about half the screw sticks out.",
+      "durationSec": 5,
+      "camera": {
+        "position": [
+          540,
+          935,
+          1450
+        ],
+        "target": [
+          0,
+          35,
+          0
+        ]
+      },
+      "moves": [
+        {
+          "instance": "screw1",
+          "to": {
+            "pos": [
+              -425,
+              50,
+              -250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0,
+          "end": 0.55,
+          "spin": 4
+        },
+        {
+          "instance": "screw2",
+          "to": {
+            "pos": [
+              425,
+              50,
+              -250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0.12,
+          "end": 0.67,
+          "spin": 4
+        },
+        {
+          "instance": "screw3",
+          "to": {
+            "pos": [
+              -425,
+              50,
+              250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0.24,
+          "end": 0.79,
+          "spin": 4
+        },
+        {
+          "instance": "screw4",
+          "to": {
+            "pos": [
+              425,
+              50,
+              250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0.36,
+          "end": 0.91,
+          "spin": 4
+        }
+      ],
+      "active": [
+        "screw1",
+        "screw2",
+        "screw3",
+        "screw4"
+      ],
+      "hands": [
+        {
+          "side": "right",
+          "follow": "screw4",
+          "offset": [
+            0,
+            45,
+            70
+          ],
+          "rot": [
+            0,
+            0,
+            0
+          ],
+          "pose": "pinch",
+          "twist": 40
+        },
+        {
+          "side": "left",
+          "follow": "top",
+          "offset": [
+            -225,
+            45,
+            60
+          ],
+          "rot": [
+            0,
+            60,
+            0
+          ],
+          "pose": "flat"
+        }
+      ],
+      "arrows": [
+        {
+          "from": [
+            -425,
+            230,
+            -250
+          ],
+          "to": [
+            -425,
+            120,
+            -250
+          ]
+        },
+        {
+          "from": [
+            425,
+            230,
+            -250
+          ],
+          "to": [
+            425,
+            120,
+            -250
+          ]
+        },
+        {
+          "from": [
+            -425,
+            230,
+            250
+          ],
+          "to": [
+            -425,
+            120,
+            250
+          ]
+        },
+        {
+          "from": [
+            425,
+            230,
+            250
+          ],
+          "to": [
+            425,
+            120,
+            250
+          ]
+        }
+      ],
+      "tray": [
+        {
+          "part": "screw",
+          "count": 4
+        }
+      ],
+      "checklist": [
+        "A screw is in each of the 4 corner holes",
+        "About half of each screw sticks out"
+      ],
+      "faq": [
+        {
+          "keywords": [
+            "which screw",
+            "screw",
+            "screws",
+            "hardware"
+          ],
+          "answer": "The 4 long screws threaded at both ends (115980). They go into the tabletop corners first."
+        },
+        {
+          "keywords": [
+            "how far",
+            "halfway",
+            "deep"
+          ],
+          "answer": "About halfway, so the leg has thread to grab. Hand tight is enough."
+        },
+        {
+          "keywords": [
+            "tool",
+            "screwdriver",
+            "drill"
+          ],
+          "answer": "No tools for this step. Turn the screws by hand."
+        }
+      ]
+    },
+    {
+      "id": "legs-onto-top",
+      "title": "Screw the legs on",
+      "instruction": "Push each leg onto a screw and turn it clockwise by hand until it sits flat against the tabletop.",
+      "durationSec": 6,
+      "camera": {
+        "position": [
+          855,
+          985,
+          1600
+        ],
+        "target": [
+          0,
+          225,
+          0
+        ]
+      },
+      "moves": [
+        {
+          "instance": "leg1",
+          "to": {
+            "pos": [
+              -425,
+              330,
+              -250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0,
+          "end": 0.4
+        },
+        {
+          "instance": "leg1",
+          "to": {
+            "pos": [
+              -425,
+              250,
+              -250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0.45,
+          "end": 0.75,
+          "spin": 3
+        },
+        {
+          "instance": "leg2",
+          "to": {
+            "pos": [
+              425,
+              330,
+              -250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0.08,
+          "end": 0.48000000000000004
+        },
+        {
+          "instance": "leg2",
+          "to": {
+            "pos": [
+              425,
+              250,
+              -250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0.53,
+          "end": 0.83,
+          "spin": 3
+        },
+        {
+          "instance": "leg3",
+          "to": {
+            "pos": [
+              -425,
+              330,
+              250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0.16,
+          "end": 0.56
+        },
+        {
+          "instance": "leg3",
+          "to": {
+            "pos": [
+              -425,
+              250,
+              250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0.61,
+          "end": 0.91,
+          "spin": 3
+        },
+        {
+          "instance": "leg4",
+          "to": {
+            "pos": [
+              425,
+              330,
+              250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0.24,
+          "end": 0.64
+        },
+        {
+          "instance": "leg4",
+          "to": {
+            "pos": [
+              425,
+              250,
+              250
+            ],
+            "rot": [
+              180,
+              0,
+              0
+            ]
+          },
+          "start": 0.69,
+          "end": 0.99,
+          "spin": 3
+        }
+      ],
+      "active": [
+        "leg1",
+        "leg2",
+        "leg3",
+        "leg4"
+      ],
+      "hands": [
+        {
+          "side": "right",
+          "follow": "leg4",
+          "offset": [
+            75,
+            120,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            -90
+          ],
+          "pose": "grip",
+          "twist": 45
+        },
+        {
+          "side": "left",
+          "follow": "top",
+          "offset": [
+            225,
+            45,
+            -40
+          ],
+          "rot": [
+            0,
+            60,
+            0
+          ],
+          "pose": "flat"
+        }
+      ],
+      "arrows": [
+        {
+          "from": [
+            -425,
+            760,
+            -250
+          ],
+          "to": [
+            -425,
+            690,
+            -250
+          ]
+        },
+        {
+          "from": [
+            425,
+            760,
+            -250
+          ],
+          "to": [
+            425,
+            690,
+            -250
+          ]
+        },
+        {
+          "from": [
+            -425,
+            760,
+            250
+          ],
+          "to": [
+            -425,
+            690,
+            250
+          ]
+        },
+        {
+          "from": [
+            425,
+            760,
+            250
+          ],
+          "to": [
+            425,
+            690,
+            250
+          ]
+        }
+      ],
+      "tray": [
+        {
+          "part": "leg",
+          "count": 4
+        }
+      ],
+      "warning": "Hand tight only. Forcing it can strip the hole in the tabletop.",
+      "checklist": [
+        "All 4 legs are screwed in",
+        "Each leg sits flat against the tabletop, no gap"
+      ],
+      "faq": [
+        {
+          "keywords": [
+            "which way",
+            "direction",
+            "clockwise",
+            "turn"
+          ],
+          "answer": "Clockwise, looking down at the leg, like closing a jar."
+        },
+        {
+          "keywords": [
+            "gap",
+            "wobble",
+            "loose",
+            "not flat"
+          ],
+          "answer": "Keep turning until the leg sits flat. If it stops early, unscrew it and screw it back in straight."
+        },
+        {
+          "keywords": [
+            "each leg",
+            "per leg",
+            "one leg",
+            "spinning",
+            "keep turning"
+          ],
+          "answer": "Each leg takes about 16 seconds of turning. Keep going until it sits flat."
+        },
+        {
+          "keywords": [
+            "reach",
+            "awkward",
+            "far side",
+            "other side",
+            "turn the table"
+          ],
+          "answer": "Turn the tabletop on the cardboard so the next corner is in front of you. 34% of people do."
+        },
+        {
+          "keywords": [
+            "how long",
+            "too long",
+            "too slow",
+            "taking long",
+            "normal"
+          ],
+          "answer": "Most people take about 1½ minutes on this step. Take your time."
+        }
+      ],
+      "typical": {
+        "medianSec": 87.6,
+        "p25Sec": 77.8,
+        "p75Sec": 107.5,
+        "n": 94
+      }
+    },
+    {
+      "id": "brackets-a",
+      "title": "Brackets on the first side",
+      "instruction": "Lay the table on one long side. On each of the two legs at the bottom, hook the metal guide (120938) over the leg end and press the awl through both guide holes to mark. Then screw an angle bracket (120298) on at the marks with a longer screw (108530).",
+      "durationSec": 6,
+      "camera": {
+        "position": [
+          500,
+          708,
+          983.5
+        ],
+        "target": [
+          0,
+          58,
+          33.5
+        ]
+      },
+      "moves": [
+        {
+          "kind": "rigid",
+          "group": [
+            "top",
+            "screw1",
+            "screw2",
+            "screw3",
+            "screw4",
+            "leg1",
+            "leg2",
+            "leg3",
+            "leg4"
+          ],
+          "translate": [
+            0,
+            161,
+            0
+          ],
+          "start": 0,
+          "end": 0.25
+        },
+        {
+          "kind": "rigid",
+          "group": [
+            "top",
+            "screw1",
+            "screw2",
+            "screw3",
+            "screw4",
+            "leg1",
+            "leg2",
+            "leg3",
+            "leg4"
+          ],
+          "pivot": [
+            0,
+            386,
+            0
+          ],
+          "rotate": [
+            90,
+            0,
+            0
+          ],
+          "start": 0.25,
+          "end": 0.75
+        },
+        {
+          "kind": "rigid",
+          "group": [
+            "top",
+            "screw1",
+            "screw2",
+            "screw3",
+            "screw4",
+            "leg1",
+            "leg2",
+            "leg3",
+            "leg4"
+          ],
+          "translate": [
+            0,
+            -111,
+            0
+          ],
+          "start": 0.75,
+          "end": 1
+        },
+        {
+          "instance": "bracket3",
+          "to": {
+            "pos": [
+              -425,
+              58,
+              33.5
+            ],
+            "rot": [
+              90,
+              0,
+              0
+            ]
+          },
+          "start": 0.78,
+          "end": 0.92
+        },
+        {
+          "instance": "bracket4",
+          "to": {
+            "pos": [
+              425,
+              58,
+              33.5
+            ],
+            "rot": [
+              90,
+              0,
+              0
+            ]
+          },
+          "start": 0.86,
+          "end": 1
+        }
+      ],
+      "active": [
+        "leg3",
+        "bracket3",
+        "leg4",
+        "bracket4"
+      ],
+      "hands": [
+        {
+          "side": "right",
+          "follow": "bracket4",
+          "offset": [
+            0,
+            50,
+            60
+          ],
+          "rot": [
+            0,
+            0,
+            0
+          ],
+          "pose": "pinch"
+        }
+      ],
+      "arrows": [
+        {
+          "from": [
+            -425,
+            228,
+            33.5
+          ],
+          "to": [
+            -425,
+            118,
+            33.5
+          ]
+        },
+        {
+          "from": [
+            425,
+            228,
+            33.5
+          ],
+          "to": [
+            425,
+            118,
+            33.5
+          ]
+        }
+      ],
+      "tray": [
+        {
+          "part": "guide",
+          "count": 1
+        },
+        {
+          "part": "bracket",
+          "count": 2
+        },
+        {
+          "part": "screwLong",
+          "count": 2
+        }
+      ],
+      "warning": "Use the LONGER screws (108530) for the brackets. The shorter ones (109041) are for the shelf.",
+      "checklist": [
+        "Both legs at the bottom have a bracket",
+        "Each bracket sits at the marks from the guide"
+      ],
+      "faq": [
+        {
+          "keywords": [
+            "which screw",
+            "screw",
+            "long",
+            "short"
+          ],
+          "answer": "The longer screws, 108530. Keep the 4 shorter ones (109041) for the shelf."
+        },
+        {
+          "keywords": [
+            "guide",
+            "metal",
+            "template",
+            "mark",
+            "where"
+          ],
+          "answer": "Hook the metal guide over the end of the leg, on the face pointing up, and press the awl through its holes. Screw the bracket on at those marks."
+        },
+        {
+          "keywords": [
+            "tool",
+            "awl",
+            "screwdriver",
+            "drill"
+          ],
+          "answer": "An awl to mark, and a Phillips (cross-head) screwdriver. No drill needed."
+        },
+        {
+          "keywords": [
+            "side",
+            "tip",
+            "lay",
+            "over"
+          ],
+          "answer": "Lay the table on one long side, legs pointing sideways, on the cardboard."
+        }
+      ]
+    },
+    {
+      "id": "brackets-b",
+      "title": "Brackets on the other side",
+      "instruction": "Turn the table over onto the other long side. On each of the two legs at the bottom, hook the metal guide (120938) over the leg end and press the awl through both guide holes to mark. Then screw an angle bracket (120298) on at the marks with a longer screw (108530).",
+      "durationSec": 6,
+      "camera": {
+        "position": [
+          500,
+          708,
+          916.5
+        ],
+        "target": [
+          0,
+          58,
+          -33.5
+        ]
+      },
+      "moves": [
+        {
+          "kind": "rigid",
+          "group": [
+            "top",
+            "screw1",
+            "screw2",
+            "screw3",
+            "screw4",
+            "leg1",
+            "leg2",
+            "leg3",
+            "leg4",
+            "bracket3",
+            "bracket4"
+          ],
+          "translate": [
+            0,
+            111,
+            0
+          ],
+          "start": 0,
+          "end": 0.25
+        },
+        {
+          "kind": "rigid",
+          "group": [
+            "top",
+            "screw1",
+            "screw2",
+            "screw3",
+            "screw4",
+            "leg1",
+            "leg2",
+            "leg3",
+            "leg4",
+            "bracket3",
+            "bracket4"
+          ],
+          "pivot": [
+            0,
+            386,
+            0
+          ],
+          "rotate": [
+            180,
+            0,
+            0
+          ],
+          "start": 0.25,
+          "end": 0.75
+        },
+        {
+          "kind": "rigid",
+          "group": [
+            "top",
+            "screw1",
+            "screw2",
+            "screw3",
+            "screw4",
+            "leg1",
+            "leg2",
+            "leg3",
+            "leg4",
+            "bracket3",
+            "bracket4"
+          ],
+          "translate": [
+            0,
+            -111,
+            0
+          ],
+          "start": 0.75,
+          "end": 1
+        },
+        {
+          "instance": "bracket1",
+          "to": {
+            "pos": [
+              -425,
+              58,
+              -33.5
+            ],
+            "rot": [
+              -90,
+              0,
+              0
+            ]
+          },
+          "start": 0.78,
+          "end": 0.92
+        },
+        {
+          "instance": "bracket2",
+          "to": {
+            "pos": [
+              425,
+              58,
+              -33.5
+            ],
+            "rot": [
+              -90,
+              0,
+              0
+            ]
+          },
+          "start": 0.86,
+          "end": 1
+        }
+      ],
+      "active": [
+        "leg1",
+        "bracket1",
+        "leg2",
+        "bracket2"
+      ],
+      "hands": [
+        {
+          "side": "right",
+          "follow": "bracket2",
+          "offset": [
+            0,
+            50,
+            60
+          ],
+          "rot": [
+            0,
+            0,
+            0
+          ],
+          "pose": "pinch"
+        }
+      ],
+      "arrows": [
+        {
+          "from": [
+            -425,
+            228,
+            -33.5
+          ],
+          "to": [
+            -425,
+            118,
+            -33.5
+          ]
+        },
+        {
+          "from": [
+            425,
+            228,
+            -33.5
+          ],
+          "to": [
+            425,
+            118,
+            -33.5
+          ]
+        }
+      ],
+      "tray": [
+        {
+          "part": "guide",
+          "count": 1
+        },
+        {
+          "part": "bracket",
+          "count": 2
+        },
+        {
+          "part": "screwLong",
+          "count": 2
+        }
+      ],
+      "warning": "Use the LONGER screws (108530) for the brackets. The shorter ones (109041) are for the shelf.",
+      "checklist": [
+        "Both legs at the bottom have a bracket",
+        "Each bracket sits at the marks from the guide"
+      ],
+      "faq": [
+        {
+          "keywords": [
+            "which screw",
+            "screw",
+            "long",
+            "short"
+          ],
+          "answer": "The longer screws, 108530. Keep the 4 shorter ones (109041) for the shelf."
+        },
+        {
+          "keywords": [
+            "guide",
+            "metal",
+            "template",
+            "mark",
+            "where"
+          ],
+          "answer": "Hook the metal guide over the end of the leg, on the face pointing up, and press the awl through its holes. Screw the bracket on at those marks."
+        },
+        {
+          "keywords": [
+            "tool",
+            "awl",
+            "screwdriver",
+            "drill"
+          ],
+          "answer": "An awl to mark, and a Phillips (cross-head) screwdriver. No drill needed."
+        },
+        {
+          "keywords": [
+            "side",
+            "tip",
+            "lay",
+            "over"
+          ],
+          "answer": "Lay the table on one long side, legs pointing sideways, on the cardboard."
+        }
+      ]
+    },
+    {
+      "id": "flip-upright",
+      "title": "Stand it up",
+      "instruction": "Lift the table and stand it on its legs. Lift rather than drag so no leg gets pulled sideways.",
+      "durationSec": 4.5,
+      "camera": {
+        "position": [
+          900,
+          1125,
+          1850
+        ],
+        "target": [
+          0,
+          225,
+          0
+        ]
+      },
+      "moves": [
+        {
+          "kind": "rigid",
+          "group": [
+            "top",
+            "screw1",
+            "screw2",
+            "screw3",
+            "screw4",
+            "leg1",
+            "leg2",
+            "leg3",
+            "leg4",
+            "bracket3",
+            "bracket4",
+            "bracket1",
+            "bracket2"
+          ],
+          "translate": [
+            0,
+            111,
+            0
+          ],
+          "start": 0,
+          "end": 0.25
+        },
+        {
+          "kind": "rigid",
+          "group": [
+            "top",
+            "screw1",
+            "screw2",
+            "screw3",
+            "screw4",
+            "leg1",
+            "leg2",
+            "leg3",
+            "leg4",
+            "bracket3",
+            "bracket4",
+            "bracket1",
+            "bracket2"
+          ],
+          "pivot": [
+            0,
+            386,
+            0
+          ],
+          "rotate": [
+            -90,
+            0,
+            0
+          ],
+          "start": 0.25,
+          "end": 0.75
+        },
+        {
+          "kind": "rigid",
+          "group": [
+            "top",
+            "screw1",
+            "screw2",
+            "screw3",
+            "screw4",
+            "leg1",
+            "leg2",
+            "leg3",
+            "leg4",
+            "bracket3",
+            "bracket4",
+            "bracket1",
+            "bracket2"
+          ],
+          "translate": [
+            0,
+            -161,
+            0
+          ],
+          "start": 0.75,
+          "end": 1
+        }
+      ],
+      "active": [
+        "top",
+        "leg1",
+        "leg2",
+        "leg3",
+        "leg4"
+      ],
+      "hands": [
+        {
+          "side": "right",
+          "follow": "leg4",
+          "mode": "local",
+          "offset": [
+            75,
+            40,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            -90
+          ],
+          "pose": "grip"
+        },
+        {
+          "side": "left",
+          "follow": "leg2",
+          "mode": "local",
+          "offset": [
+            75,
+            40,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            -90
+          ],
+          "pose": "grip"
+        }
+      ],
+      "showFinishedFace": true,
+      "tray": [],
+      "warning": "Lift, don’t drag. Dragging can snap a leg off its screw.",
+      "checklist": [
+        "Table stands on all 4 legs",
+        "The brackets face each other under the top"
+      ],
+      "faq": [
+        {
+          "keywords": [
+            "heavy",
+            "alone",
+            "help",
+            "lift"
+          ],
+          "answer": "Hold two legs, lift, and tip it over onto the other two. A helper makes it easier."
+        },
+        {
+          "keywords": [
+            "wobble",
+            "uneven",
+            "rock"
+          ],
+          "answer": "Tip it back and turn the short leg until it sits flat against the top."
+        },
+        {
+          "keywords": [
+            "how long",
+            "too long",
+            "too slow",
+            "taking long",
+            "normal"
+          ],
+          "answer": "Most people take about 8 seconds on this step. Take your time."
+        }
+      ],
+      "typical": {
+        "medianSec": 7.6,
+        "p25Sec": 6.2,
+        "p75Sec": 9.5,
+        "n": 92
+      }
+    },
+    {
+      "id": "shelf-in",
+      "title": "Slide the shelf in",
+      "instruction": "Slide the shelf in from one end, between the legs, so it rests on the 4 brackets.",
+      "durationSec": 5,
+      "camera": {
+        "position": [
+          990,
+          925,
+          1650
+        ],
+        "target": [
+          0,
+          225,
+          0
+        ]
+      },
+      "moves": [
+        {
+          "instance": "shelf",
+          "to": {
+            "pos": [
+              1020,
+              209,
+              0
+            ],
+            "rot": [
+              0,
+              0,
+              0
+            ]
+          },
+          "start": 0,
+          "end": 0.4
+        },
+        {
+          "instance": "shelf",
+          "to": {
+            "pos": [
+              0,
+              209,
+              0
+            ],
+            "rot": [
+              0,
+              0,
+              0
+            ]
+          },
+          "start": 0.45,
+          "end": 1
+        }
+      ],
+      "active": [
+        "shelf"
+      ],
+      "hands": [
+        {
+          "side": "right",
+          "follow": "shelf",
+          "mode": "local",
+          "offset": [
+            405,
+            -20,
+            194
+          ],
+          "rot": [
+            180,
+            0,
+            0
+          ],
+          "pose": "flat"
+        },
+        {
+          "side": "left",
+          "follow": "shelf",
+          "mode": "local",
+          "offset": [
+            405,
+            -20,
+            -194
+          ],
+          "rot": [
+            180,
+            0,
+            0
+          ],
+          "pose": "flat"
+        }
+      ],
+      "arrows": [
+        {
+          "from": [
+            950,
+            289,
+            0
+          ],
+          "to": [
+            530,
+            289,
+            0
+          ]
+        }
+      ],
+      "tray": [
+        {
+          "part": "shelf",
+          "count": 1
+        }
+      ],
+      "checklist": [
+        "The shelf rests on all 4 brackets"
+      ],
+      "faq": [
+        {
+          "keywords": [
+            "fit",
+            "stuck",
+            "tight"
+          ],
+          "answer": "Keep the shelf level and centred between the legs. If it catches, check that every bracket sits at its marks."
+        },
+        {
+          "keywords": [
+            "which side",
+            "up",
+            "down"
+          ],
+          "answer": "Either side up is fine for the shelf."
+        },
+        {
+          "keywords": [
+            "how long",
+            "too long",
+            "too slow",
+            "taking long",
+            "normal"
+          ],
+          "answer": "Most people take about 25 seconds on this step. Take your time."
+        }
+      ],
+      "typical": {
+        "medianSec": 24.7,
+        "p25Sec": 18.8,
+        "p75Sec": 33,
+        "n": 94
+      }
+    },
+    {
+      "id": "shelf-screws",
+      "title": "Screw the shelf to the brackets",
+      "instruction": "Fix the shelf to each of the 4 brackets with a shorter screw (109041). Use a Phillips screwdriver.",
+      "durationSec": 5,
+      "camera": {
+        "position": [
+          945,
+          102.5,
+          1037
+        ],
+        "target": [
+          425,
+          202.5,
+          217
+        ]
+      },
+      "moves": [
+        {
+          "instance": "sscrew1",
+          "to": {
+            "pos": [
+              -425,
+              202.5,
+              217
+            ],
+            "rot": [
+              -180,
+              0,
+              0
+            ]
+          },
+          "start": 0,
+          "end": 0.4,
+          "spin": 3
+        },
+        {
+          "instance": "sscrew2",
+          "to": {
+            "pos": [
+              425,
+              202.5,
+              217
+            ],
+            "rot": [
+              -180,
+              0,
+              0
+            ]
+          },
+          "start": 0.15,
+          "end": 0.55,
+          "spin": 3
+        },
+        {
+          "instance": "sscrew3",
+          "to": {
+            "pos": [
+              -425,
+              202.5,
+              -217
+            ],
+            "rot": [
+              -180,
+              0,
+              0
+            ]
+          },
+          "start": 0.3,
+          "end": 0.7,
+          "spin": 3
+        },
+        {
+          "instance": "sscrew4",
+          "to": {
+            "pos": [
+              425,
+              202.5,
+              -217
+            ],
+            "rot": [
+              -180,
+              0,
+              0
+            ]
+          },
+          "start": 0.44999999999999996,
+          "end": 0.85,
+          "spin": 3
+        }
+      ],
+      "active": [
+        "sscrew1",
+        "sscrew2",
+        "sscrew3",
+        "sscrew4",
+        "bracket1",
+        "bracket2",
+        "bracket3",
+        "bracket4"
+      ],
+      "hands": [
+        {
+          "side": "right",
+          "follow": "sscrew2",
+          "offset": [
+            0,
+            -55,
+            40
+          ],
+          "rot": [
+            180,
+            0,
+            0
+          ],
+          "pose": "pinch",
+          "twist": 40
+        }
+      ],
+      "tray": [
+        {
+          "part": "screwShort",
+          "count": 4
+        }
+      ],
+      "warning": "Shorter screws (109041) here. A long screw can come through the top of the shelf.",
+      "checklist": [
+        "All 4 brackets are screwed to the shelf",
+        "The shelf does not slide when pushed"
+      ],
+      "faq": [
+        {
+          "keywords": [
+            "which screw",
+            "screw",
+            "short",
+            "long"
+          ],
+          "answer": "The 4 shorter screws, 109041. The longer ones went into the brackets."
+        },
+        {
+          "keywords": [
+            "tool",
+            "screwdriver"
+          ],
+          "answer": "A Phillips (cross-head) screwdriver."
+        },
+        {
+          "keywords": [
+            "done",
+            "finished",
+            "next"
+          ],
+          "answer": "That was the last step. Your LACK coffee table is done."
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "name": "IKEA ASM Dataset (Ben-Shabat et al., WACV 2021)",
+      "url": "https://ikeaasm.github.io/",
+      "license": "CC BY-NC 4.0",
+      "note": "Derived from action annotations of 95 LACK coffee table builds at ~24 fps."
+    },
+    {
+      "name": "IKEA-Manual (Wang et al., NeurIPS 2022)",
+      "url": "https://arxiv.org/abs/2302.01881",
+      "license": "see dataset",
+      "note": "Shelf height from the LACK coffee table part model."
+    }
+  ]
+}

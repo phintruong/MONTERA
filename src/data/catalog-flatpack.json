@@ -1,0 +1,121 @@
+[
+ {
+  "id": "fp-kallax-1x2",
+  "name": "KALLAX shelving unit 1×2",
+  "category": "Shelf",
+  "steps": 5,
+  "timed": false
+ },
+ {
+  "id": "fp-kallax-1x4",
+  "name": "KALLAX shelving unit 1×4",
+  "category": "Shelf",
+  "steps": 6,
+  "timed": false
+ },
+ {
+  "id": "fp-kallax-2x2",
+  "name": "KALLAX shelving unit 2×2",
+  "category": "Shelf",
+  "steps": 5,
+  "timed": false
+ },
+ {
+  "id": "fp-kallax-2x4",
+  "name": "KALLAX shelving unit 2×4",
+  "category": "Shelf",
+  "steps": 6,
+  "timed": false
+ },
+ {
+  "id": "fp-kallax-4x2",
+  "name": "KALLAX shelving unit 4×2",
+  "category": "Shelf",
+  "steps": 5,
+  "timed": false
+ },
+ {
+  "id": "fp-kallax-4x4",
+  "name": "KALLAX shelving unit 4×4",
+  "category": "Shelf",
+  "steps": 6,
+  "timed": false
+ },
+ {
+  "id": "fp-kallax-5x5",
+  "name": "KALLAX shelving unit 5×5",
+  "category": "Shelf",
+  "steps": 6,
+  "timed": false
+ },
+ {
+  "id": "fp-billy-40x106",
+  "name": "BILLY bookcase 40×106",
+  "category": "Shelf",
+  "steps": 6,
+  "timed": false
+ },
+ {
+  "id": "fp-billy-40x202",
+  "name": "BILLY bookcase 40×202",
+  "category": "Shelf",
+  "steps": 7,
+  "timed": false
+ },
+ {
+  "id": "fp-billy-80x106",
+  "name": "BILLY bookcase 80×106",
+  "category": "Shelf",
+  "steps": 6,
+  "timed": false
+ },
+ {
+  "id": "fp-billy-80x202",
+  "name": "BILLY bookcase 80×202",
+  "category": "Shelf",
+  "steps": 7,
+  "timed": false
+ },
+ {
+  "id": "fp-eket-35x35",
+  "name": "EKET cabinet 35×35",
+  "category": "Cabinet",
+  "steps": 5,
+  "timed": false
+ },
+ {
+  "id": "fp-eket-70x35",
+  "name": "EKET cabinet 70×35 (2 compartments)",
+  "category": "Cabinet",
+  "steps": 5,
+  "timed": false
+ },
+ {
+  "id": "fp-eket-105x35",
+  "name": "EKET cabinet 105×35 (3 compartments)",
+  "category": "Cabinet",
+  "steps": 5,
+  "timed": false
+ },
+ {
+  "id": "fp-linnmon-100x60",
+  "name": "LINNMON / ADILS desk 100×60",
+  "category": "Desk",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "fp-linnmon-120x60",
+  "name": "LINNMON / ADILS desk 120×60",
+  "category": "Desk",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "fp-linnmon-150x75",
+  "name": "LINNMON / ADILS desk 150×75",
+  "category": "Desk",
+  "steps": 3,
+  "timed": false
+ }
+]

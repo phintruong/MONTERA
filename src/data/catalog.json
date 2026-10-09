@@ -1,0 +1,709 @@
+[
+ {
+  "id": "im-bench-applaro",
+  "name": "ÄPPLARÖ bench",
+  "category": "Bench",
+  "steps": 2,
+  "timed": false
+ },
+ {
+  "id": "im-bench-applaro-2",
+  "name": "ÄPPLARÖ bench (2)",
+  "category": "Bench",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-bench-applaro-3",
+  "name": "ÄPPLARÖ bench (3)",
+  "category": "Bench",
+  "steps": 4,
+  "timed": false
+ },
+ {
+  "id": "im-bench-hemnes",
+  "name": "HEMNES bench",
+  "category": "Bench",
+  "steps": 5,
+  "timed": false
+ },
+ {
+  "id": "im-bench-hemnes-2",
+  "name": "HEMNES bench (2)",
+  "category": "Bench",
+  "steps": 4,
+  "timed": false
+ },
+ {
+  "id": "im-bench-silveran",
+  "name": "SILVERAN bench",
+  "category": "Bench",
+  "steps": 7,
+  "timed": false
+ },
+ {
+  "id": "im-bench-sjalland",
+  "name": "SJÄLLAND bench",
+  "category": "Bench",
+  "steps": 2,
+  "timed": false
+ },
+ {
+  "id": "im-bench-tjusig",
+  "name": "TJUSIG bench",
+  "category": "Bench",
+  "steps": 6,
+  "timed": true
+ },
+ {
+  "id": "im-chair-agam",
+  "name": "AGAM chair",
+  "category": "Chair",
+  "steps": 6,
+  "timed": false
+ },
+ {
+  "id": "im-chair-applaro",
+  "name": "ÄPPLARÖ chair",
+  "category": "Chair",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-chair-applaro-2",
+  "name": "ÄPPLARÖ chair (2)",
+  "category": "Chair",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-chair-applaro-3",
+  "name": "ÄPPLARÖ chair (3)",
+  "category": "Chair",
+  "steps": 2,
+  "timed": false
+ },
+ {
+  "id": "im-chair-bekvam-3017",
+  "name": "BEKVÄM step stool (3017)",
+  "category": "Chair",
+  "steps": 5,
+  "timed": true
+ },
+ {
+  "id": "im-chair-bernhard",
+  "name": "BERNHARD chair",
+  "category": "Chair",
+  "steps": 1,
+  "timed": false
+ },
+ {
+  "id": "im-chair-borje",
+  "name": "BÖRJE chair",
+  "category": "Chair",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-chair-dalfred",
+  "name": "DALFRED chair",
+  "category": "Chair",
+  "steps": 7,
+  "timed": false
+ },
+ {
+  "id": "im-chair-ekenas",
+  "name": "EKENÄSET chair",
+  "category": "Chair",
+  "steps": 1,
+  "timed": false
+ },
+ {
+  "id": "im-chair-falholmen",
+  "name": "FALHOLMEN chair",
+  "category": "Chair",
+  "steps": 5,
+  "timed": false
+ },
+ {
+  "id": "im-chair-fanbyn",
+  "name": "FANBYN chair",
+  "category": "Chair",
+  "steps": 5,
+  "timed": false
+ },
+ {
+  "id": "im-chair-froset",
+  "name": "FRÖSET chair",
+  "category": "Chair",
+  "steps": 5,
+  "timed": false
+ },
+ {
+  "id": "im-chair-glenn",
+  "name": "GLENN chair",
+  "category": "Chair",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-chair-grubban",
+  "name": "GRUBBAN step stool",
+  "category": "Chair",
+  "steps": 4,
+  "timed": false
+ },
+ {
+  "id": "im-chair-herman",
+  "name": "HERMAN chair",
+  "category": "Chair",
+  "steps": 4,
+  "timed": false
+ },
+ {
+  "id": "im-chair-ingolf",
+  "name": "INGOLF chair",
+  "category": "Chair",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-chair-ingolf-2",
+  "name": "INGOLF chair (2)",
+  "category": "Chair",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-chair-ivar",
+  "name": "IVAR chair",
+  "category": "Chair",
+  "steps": 2,
+  "timed": false
+ },
+ {
+  "id": "im-chair-jokkmokk",
+  "name": "JOKKMOKK chair",
+  "category": "Chair",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-chair-jules-1",
+  "name": "JULES chair (1)",
+  "category": "Chair",
+  "steps": 2,
+  "timed": false
+ },
+ {
+  "id": "im-chair-jules-2",
+  "name": "JULES chair (2)",
+  "category": "Chair",
+  "steps": 2,
+  "timed": false
+ },
+ {
+  "id": "im-chair-kaustby",
+  "name": "KAUSTBY chair",
+  "category": "Chair",
+  "steps": 4,
+  "timed": false
+ },
+ {
+  "id": "im-chair-klappsta",
+  "name": "KLAPPSTA chair",
+  "category": "Chair",
+  "steps": 2,
+  "timed": false
+ },
+ {
+  "id": "im-chair-kyrre",
+  "name": "KYRRE stool",
+  "category": "Chair",
+  "steps": 1,
+  "timed": false
+ },
+ {
+  "id": "im-chair-leifarne",
+  "name": "LEIFARNE chair",
+  "category": "Chair",
+  "steps": 1,
+  "timed": false
+ },
+ {
+  "id": "im-chair-lerhamn",
+  "name": "LERHAMN chair",
+  "category": "Chair",
+  "steps": 5,
+  "timed": false
+ },
+ {
+  "id": "im-chair-lisabo",
+  "name": "LISABO chair",
+  "category": "Chair",
+  "steps": 4,
+  "timed": false
+ },
+ {
+  "id": "im-chair-mammut-1",
+  "name": "MAMMUT children’s chair (1)",
+  "category": "Chair",
+  "steps": 2,
+  "timed": true
+ },
+ {
+  "id": "im-chair-mammut-2",
+  "name": "MAMMUT children’s stool (2)",
+  "category": "Chair",
+  "steps": 1,
+  "timed": false
+ },
+ {
+  "id": "im-chair-marius",
+  "name": "MARIUS stool",
+  "category": "Chair",
+  "steps": 2,
+  "timed": true
+ },
+ {
+  "id": "im-chair-nils",
+  "name": "NILS chair",
+  "category": "Chair",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-chair-nilsolle",
+  "name": "NILSOLLE chair",
+  "category": "Chair",
+  "steps": 4,
+  "timed": false
+ },
+ {
+  "id": "im-chair-nilsove",
+  "name": "NILSOVE chair",
+  "category": "Chair",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-chair-nordviken",
+  "name": "NORDVIKEN bar stool",
+  "category": "Chair",
+  "steps": 4,
+  "timed": false
+ },
+ {
+  "id": "im-chair-norraker",
+  "name": "NORRÅKER chair",
+  "category": "Chair",
+  "steps": 5,
+  "timed": false
+ },
+ {
+  "id": "im-chair-norraryd",
+  "name": "NORRARYD chair",
+  "category": "Chair",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-chair-omtanksam",
+  "name": "OMTANKSAM chair",
+  "category": "Chair",
+  "steps": 1,
+  "timed": false
+ },
+ {
+  "id": "im-chair-perjohan",
+  "name": "PERJOHAN chair",
+  "category": "Chair",
+  "steps": 4,
+  "timed": false
+ },
+ {
+  "id": "im-chair-poang-2",
+  "name": "POÄNG armchair (2)",
+  "category": "Chair",
+  "steps": 6,
+  "timed": true
+ },
+ {
+  "id": "im-chair-poang-1",
+  "name": "POÄNG footstool (1)",
+  "category": "Chair",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-chair-preben",
+  "name": "PREBEN chair",
+  "category": "Chair",
+  "steps": 2,
+  "timed": false
+ },
+ {
+  "id": "im-chair-ragrund",
+  "name": "RÅGRUND chair",
+  "category": "Chair",
+  "steps": 5,
+  "timed": false
+ },
+ {
+  "id": "im-chair-reidar",
+  "name": "REIDAR chair",
+  "category": "Chair",
+  "steps": 2,
+  "timed": false
+ },
+ {
+  "id": "im-chair-ronninge",
+  "name": "RÖNNINGE chair",
+  "category": "Chair",
+  "steps": 7,
+  "timed": false
+ },
+ {
+  "id": "im-chair-sigurd",
+  "name": "SIGURD chair",
+  "category": "Chair",
+  "steps": 5,
+  "timed": false
+ },
+ {
+  "id": "im-chair-sjalland",
+  "name": "SJÄLLAND chair",
+  "category": "Chair",
+  "steps": 5,
+  "timed": false
+ },
+ {
+  "id": "im-chair-skogsta-2",
+  "name": "SKOGSTA bench (2)",
+  "category": "Chair",
+  "steps": 1,
+  "timed": false
+ },
+ {
+  "id": "im-chair-skogsta",
+  "name": "SKOGSTA chair",
+  "category": "Chair",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-chair-stefan",
+  "name": "STEFAN chair",
+  "category": "Chair",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-chair-stig",
+  "name": "STIG bar stool",
+  "category": "Chair",
+  "steps": 9,
+  "timed": true
+ },
+ {
+  "id": "im-chair-sundvik",
+  "name": "SUNDVIK children’s chair",
+  "category": "Chair",
+  "steps": 4,
+  "timed": false
+ },
+ {
+  "id": "im-chair-teodores",
+  "name": "TEODORES chair",
+  "category": "Chair",
+  "steps": 7,
+  "timed": false
+ },
+ {
+  "id": "im-chair-tobias",
+  "name": "TOBIAS chair",
+  "category": "Chair",
+  "steps": 1,
+  "timed": false
+ },
+ {
+  "id": "im-chair-trogen",
+  "name": "TROGEN chair",
+  "category": "Chair",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-chair-vedbo",
+  "name": "VEDBO chair",
+  "category": "Chair",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-chair-voxlov",
+  "name": "VOXLÖV chair",
+  "category": "Chair",
+  "steps": 4,
+  "timed": false
+ },
+ {
+  "id": "im-chair-yngvar",
+  "name": "YNGVAR chair",
+  "category": "Chair",
+  "steps": 1,
+  "timed": false
+ },
+ {
+  "id": "im-desk-alex",
+  "name": "ALEX desk",
+  "category": "Desk",
+  "steps": 8,
+  "timed": false
+ },
+ {
+  "id": "im-desk-flisat",
+  "name": "FLISAT desk",
+  "category": "Desk",
+  "steps": 9,
+  "timed": false
+ },
+ {
+  "id": "im-desk-fredrik",
+  "name": "FREDRIK desk",
+  "category": "Desk",
+  "steps": 4,
+  "timed": false
+ },
+ {
+  "id": "im-desk-pahl",
+  "name": "PÅHL desk",
+  "category": "Desk",
+  "steps": 3,
+  "timed": true
+ },
+ {
+  "id": "im-misc-askholmen",
+  "name": "ASKHOLMEN furniture",
+  "category": "Misc",
+  "steps": 4,
+  "timed": false
+ },
+ {
+  "id": "im-misc-lantliv",
+  "name": "LANTLIV furniture",
+  "category": "Misc",
+  "steps": 4,
+  "timed": false
+ },
+ {
+  "id": "im-misc-lantliv-2",
+  "name": "LANTLIV furniture (2)",
+  "category": "Misc",
+  "steps": 4,
+  "timed": false
+ },
+ {
+  "id": "im-misc-olivblad",
+  "name": "OLIVBLAD furniture",
+  "category": "Misc",
+  "steps": 8,
+  "timed": false
+ },
+ {
+  "id": "im-misc-satsumas",
+  "name": "SATSUMAS plant stand",
+  "category": "Misc",
+  "steps": 2,
+  "timed": false
+ },
+ {
+  "id": "im-misc-satsumas-2",
+  "name": "SATSUMAS plant stand (2)",
+  "category": "Misc",
+  "steps": 4,
+  "timed": true
+ },
+ {
+  "id": "im-misc-smussla",
+  "name": "SMUSSLA furniture",
+  "category": "Misc",
+  "steps": 6,
+  "timed": false
+ },
+ {
+  "id": "im-misc-vaniljstang",
+  "name": "VANILJSTÅNG furniture",
+  "category": "Misc",
+  "steps": 5,
+  "timed": false
+ },
+ {
+  "id": "im-misc-vesken",
+  "name": "VESKEN trolley",
+  "category": "Misc",
+  "steps": 4,
+  "timed": true
+ },
+ {
+  "id": "im-misc-vittsjo",
+  "name": "VITTSJÖ furniture",
+  "category": "Misc",
+  "steps": 5,
+  "timed": false
+ },
+ {
+  "id": "im-misc-vittsjo-2",
+  "name": "VITTSJÖ laptop stand (2)",
+  "category": "Misc",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-shelf-laiva",
+  "name": "LAIVA bookcase",
+  "category": "Shelf",
+  "steps": 5,
+  "timed": true
+ },
+ {
+  "id": "im-shelf-pinnig",
+  "name": "PINNIG shelf",
+  "category": "Shelf",
+  "steps": 4,
+  "timed": false
+ },
+ {
+  "id": "im-shelf-vesken",
+  "name": "VESKEN shelf unit",
+  "category": "Shelf",
+  "steps": 6,
+  "timed": false
+ },
+ {
+  "id": "im-table-applaro",
+  "name": "ÄPPLARÖ table",
+  "category": "Table",
+  "steps": 1,
+  "timed": false
+ },
+ {
+  "id": "im-table-bjorkudden",
+  "name": "BJÖRKUDDEN table",
+  "category": "Table",
+  "steps": 5,
+  "timed": false
+ },
+ {
+  "id": "im-table-bjorkudden-2",
+  "name": "BJÖRKUDDEN table (2)",
+  "category": "Table",
+  "steps": 2,
+  "timed": false
+ },
+ {
+  "id": "im-table-falholmen",
+  "name": "FALHOLMEN table",
+  "category": "Table",
+  "steps": 2,
+  "timed": false
+ },
+ {
+  "id": "im-table-fjallbo",
+  "name": "FJÄLLBO table",
+  "category": "Table",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-table-gladom",
+  "name": "GLADOM tray table",
+  "category": "Table",
+  "steps": 3,
+  "timed": true
+ },
+ {
+  "id": "im-table-jokkmokk",
+  "name": "JOKKMOKK table",
+  "category": "Table",
+  "steps": 1,
+  "timed": false
+ },
+ {
+  "id": "im-table-klingsbo-1",
+  "name": "KLINGSBO table (1)",
+  "category": "Table",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-table-lunnarp",
+  "name": "LUNNARP table",
+  "category": "Table",
+  "steps": 6,
+  "timed": false
+ },
+ {
+  "id": "im-table-nesna",
+  "name": "NESNA table",
+  "category": "Table",
+  "steps": 6,
+  "timed": false
+ },
+ {
+  "id": "im-table-satsumas",
+  "name": "SATSUMAS plant stand",
+  "category": "Table",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-table-sjalland",
+  "name": "SJÄLLAND table",
+  "category": "Table",
+  "steps": 7,
+  "timed": false
+ },
+ {
+  "id": "im-table-tommaryd",
+  "name": "TOMMARYD table",
+  "category": "Table",
+  "steps": 6,
+  "timed": false
+ },
+ {
+  "id": "im-table-tornviken",
+  "name": "TORNVIKEN kitchen island",
+  "category": "Table",
+  "steps": 10,
+  "timed": false
+ },
+ {
+  "id": "im-table-vadholma",
+  "name": "VADHOLMA table",
+  "category": "Table",
+  "steps": 6,
+  "timed": false
+ },
+ {
+  "id": "im-table-vittsjo-1",
+  "name": "VITTSJÖ table (1)",
+  "category": "Table",
+  "steps": 3,
+  "timed": false
+ },
+ {
+  "id": "im-table-vittsjo-2",
+  "name": "VITTSJÖ table (2)",
+  "category": "Table",
+  "steps": 5,
+  "timed": false
+ },
+ {
+  "id": "im-table-voxlov",
+  "name": "VOXLÖV table",
+  "category": "Table",
+  "steps": 3,
+  "timed": false
+ }
+]
