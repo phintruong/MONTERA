@@ -27,19 +27,31 @@ const REACH = Math.max(
 )
 const SHADOW_SCALE = Math.min(8, Math.max(1.5, REACH * MM * 2.4))
 const SHADOW_FAR = Math.min(1.2, Math.max(0.4, SHADOW_SCALE * 0.25))
+const labelPos = new Vector3()
 
 export function Scene() {
   return (
-    <Canvas camera={{ fov: 38, near: 0.01, far: 50, position: START_CAMERA }} dpr={[1, 2]}>
-      <color attach="background" args={[CANVAS]} />
-      <hemisphereLight args={['#ffffff', '#e8e4da', 1.5]} />
-      <directionalLight position={[1.5, 3, 2]} intensity={1.4} />
-      <directionalLight position={[-2, 1, -1]} intensity={0.4} />
-      <ContactShadows position={[0, -0.004, 0]} opacity={0.16} scale={SHADOW_SCALE} blur={2.6} far={SHADOW_FAR} resolution={1024} color={INK} />
-      <Parts />
-      <Arrows />
-      <CameraRig />
-    </Canvas>
+    <>
+      <Canvas camera={{ fov: 38, near: 0.01, far: 50, position: START_CAMERA }} dpr={[1, 2]}>
+        <color attach="background" args={[CANVAS]} />
+        <hemisphereLight args={['#ffffff', '#e8e4da', 1.5]} />
+        <directionalLight position={[1.5, 3, 2]} intensity={1.4} />
+        <directionalLight position={[-2, 1, -1]} intensity={0.4} />
+        <ContactShadows
+          position={[0, -0.004, 0]}
+          opacity={0.16}
+          scale={SHADOW_SCALE}
+          blur={2.6}
+          far={SHADOW_FAR}
+          resolution={1024}
+          color={INK}
+        />
+        <Parts />
+        <Arrows />
+        <CameraRig />
+      </Canvas>
+      <PartLabels />
+    </>
   )
 }
 
@@ -93,7 +105,7 @@ function Parts() {
   const refs = useRef(new Map<string, Group>())
   const explodeAmt = useRef(0)
 
-  useFrame((_, dt) => {
+  useFrame(({ camera, size }, dt) => {
     const st = useStore.getState()
     st.tick(Math.min(dt, 0.1))
     const target = st.exploded ? 1 : 0
@@ -108,6 +120,20 @@ function Parts() {
         g.position.copy(pl.p).multiplyScalar(MM)
         g.quaternion.copy(pl.q)
       }
+    }
+    // Letter tags follow their parts' centres on screen while the part is active.
+    const now = assembly.steps[st.step].active
+    for (const inst of LABELLED) {
+      const el = labelEls.get(inst.id)
+      const pl = frame.get(inst.id)
+      if (!el) continue
+      const v = pl && now.includes(inst.id) ? labelPos.copy(pl.p).multiplyScalar(MM).project(camera) : null
+      if (!v || v.z > 1) {
+        el.style.display = 'none'
+        continue
+      }
+      el.style.display = 'flex'
+      el.style.transform = `translate(${((v.x + 1) / 2) * size.width}px, ${((1 - v.y) / 2) * size.height}px) translate(-50%, -50%)`
     }
   })
 
@@ -129,21 +155,36 @@ function Parts() {
           visible={false}
         >
           <PartMesh part={assembly.parts[inst.part]} active={active.has(inst.id)} showFinished={showFinished} />
-          {inst.label && <PartLabel text={inst.label} visible={active.has(inst.id)} />}
         </group>
       ))}
     </group>
   )
 }
 
-/** The part's letter from the instructions, in a blue tag at its centre. Toggled, not unmounted (see FinishedFace). */
-function PartLabel({ text, visible }: { text: string; visible: boolean }) {
+/**
+ * Part letters from the instructions ("Join A and B"), as blue tags over the canvas. Plain DOM
+ * positioned by Parts' frame loop: drei <Html> dropped the first of many labels under React 19.
+ */
+const labelEls = new Map<string, HTMLDivElement>()
+const LABELLED = assembly.instances.filter((i) => i.label)
+
+function PartLabels() {
+  if (LABELLED.length === 0) return null
   return (
-    <Html center zIndexRange={[10, 0]} style={{ display: visible ? 'block' : 'none' }}>
-      <div className="pointer-events-none flex h-9 min-w-9 items-center justify-center rounded-full bg-blue px-2 text-lg font-bold text-white">
-        {text}
-      </div>
-    </Html>
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+      {LABELLED.map((inst) => (
+        <div
+          key={inst.id}
+          ref={(el) => {
+            if (el) labelEls.set(inst.id, el)
+            else labelEls.delete(inst.id)
+          }}
+          className="absolute top-0 left-0 hidden h-9 min-w-9 items-center justify-center rounded-full bg-blue px-2 text-lg font-bold text-white"
+        >
+          {inst.label}
+        </div>
+      ))}
+    </div>
   )
 }
 
@@ -151,7 +192,13 @@ function PartLabel({ text, visible }: { text: string; visible: boolean }) {
 function MeshPart({ part, active, edgeColor, edgeWidth }: { part: Part; active: boolean; edgeColor: string; edgeWidth: number }) {
   const geometry = useMemo(() => {
     const g = new BufferGeometry()
-    g.setAttribute('position', new Float32BufferAttribute(part.mesh!.positions.map((v) => v * MM), 3))
+    g.setAttribute(
+      'position',
+      new Float32BufferAttribute(
+        part.mesh!.positions.map((v) => v * MM),
+        3,
+      ),
+    )
     g.setIndex(part.mesh!.indices)
     g.computeVertexNormals()
     return g
@@ -166,7 +213,14 @@ function MeshPart({ part, active, edgeColor, edgeWidth }: { part: Part; active: 
     <group>
       <mesh geometry={geometry}>
         {/* Thin rails barely show a blue outline, so active mesh parts also get a pale blue body. */}
-        <meshStandardMaterial color={active ? BLUE_TINT : part.color} roughness={1} side={DoubleSide} polygonOffset polygonOffsetFactor={1} polygonOffsetUnits={1} />
+        <meshStandardMaterial
+          color={active ? BLUE_TINT : part.color}
+          roughness={1}
+          side={DoubleSide}
+          polygonOffset
+          polygonOffsetFactor={1}
+          polygonOffsetUnits={1}
+        />
       </mesh>
       {outline.length > 1 && <Line points={outline} segments color={edgeColor} lineWidth={edgeWidth} />}
     </group>

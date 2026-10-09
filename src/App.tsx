@@ -99,7 +99,12 @@ export default function App() {
 
         <header className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-4 md:p-6">
           <div className="pointer-events-auto min-w-0">
-            <ProductPicker />
+            {/* Study sessions are pinned to one product: a stray switch would reload and lose the log. */}
+            {study.enabled ? (
+              <p className="flex h-14 items-center text-lg font-bold tracking-[-0.01em]">{assembly.product.name}</p>
+            ) : (
+              <ProductPicker />
+            )}
             <ol className="mt-3 flex gap-1 pl-1" aria-label={`Step ${step + 1} of ${assembly.steps.length}`}>
               {assembly.steps.map((st, i) => (
                 <li
@@ -184,6 +189,7 @@ interface PickerEntry {
   name: string
   group: string
   key: string // lower-case, accents stripped: "poang" finds POÄNG
+  partsOnly: boolean
 }
 const fold = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
 const GROUP_NOTE: Record<CatalogEntry['from'], string> = {
@@ -191,14 +197,15 @@ const GROUP_NOTE: Record<CatalogEntry['from'], string> = {
   'ikea-manual': 'parts only',
 }
 const ENTRIES: PickerEntry[] = [
-  ...productIds.map((id) => ({ id, name: productNames[id], group: 'Full guides', key: '' })),
+  ...productIds.map((id) => ({ id, name: productNames[id], group: 'Full guides', partsOnly: false })),
   ...(['flatpack', 'ikea-manual'] as const).flatMap((from) =>
     generated
       .filter((c) => c.from === from)
       .sort((a, b) => a.category.localeCompare(b.category) || a.name.localeCompare(b.name))
-      .map((c) => ({ id: c.id, name: c.name, group: `${c.category} · ${GROUP_NOTE[from]}`, key: '' })),
+      .map((c) => ({ id: c.id, name: c.name, group: `${c.category} · ${GROUP_NOTE[from]}`, partsOnly: from === 'ikea-manual' })),
   ),
 ].map((e) => ({ ...e, key: fold(`${e.name} ${e.group} ${e.id}`) }))
+const PARTS_ONLY = ENTRIES.filter((e) => e.partsOnly).length
 const SUGGEST = ['LACK', 'KALLAX', 'BILLY']
 
 /** The product name doubles as the product switch: type to search. Switching reloads with ?product=. */
@@ -209,8 +216,11 @@ function ProductPicker() {
   const [hi, setHi] = useState(0)
   // Switching reloads and drops progress, so mid-build the first pick only asks.
   const [confirmId, setConfirmId] = useState<string | null>(null)
+  // Parts-only guides are thinner, so browsing hides them until asked; typing searches everything.
+  const [showAll, setShowAll] = useState(productId.startsWith('im-'))
   const words = fold(query).split(/\s+/).filter(Boolean)
-  const results = ENTRIES.filter((e) => words.every((w) => e.key.includes(w)))
+  const results = ENTRIES.filter((e) => (words.length > 0 || showAll || !e.partsOnly) && words.every((w) => e.key.includes(w)))
+  const hidden = words.length === 0 && !showAll
   const current = ENTRIES.find((e) => e.id === productId)
 
   const search = (q: string) => {
@@ -326,6 +336,17 @@ function ProductPicker() {
               </Fragment>
             )
           })}
+          {hidden && (
+            <li role="presentation" className="border-t border-hairline">
+              <button
+                className="flex min-h-14 w-full flex-col justify-center px-4 py-2 text-left transition-colors duration-150 hover:bg-hover"
+                onClick={() => setShowAll(true)}
+              >
+                <span className="text-base font-bold">Show {PARTS_ONLY} more</span>
+                <span className="text-sm text-ink-soft">Parts only: you follow the paper manual for fittings</span>
+              </button>
+            </li>
+          )}
         </ul>
       )}
     </div>
