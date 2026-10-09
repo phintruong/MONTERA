@@ -19,14 +19,14 @@ export default function App() {
   const [calibrating, setCalibrating] = useState(false)
   const [sheetOpen, setSheetOpen] = useState(true)
   const [pending, setPending] = useState(false)
-  const [answer, setAnswer] = useState<(Answer & { question: string }) | null>(null)
+  const [answer, setAnswer] = useState<(Answer & { question: string; step: number }) | null>(null)
 
   const runAsk = useCallback(async (question: string, how: 'text' | 'voice') => {
     const st = useStore.getState()
     setPending(true)
     const a = await ask(st.step, question)
     setPending(false)
-    setAnswer({ ...a, question })
+    setAnswer({ ...a, question, step: st.step })
     setSheetOpen(true)
     st.record('question', { question, how, source: a.source, answer: a.text })
     speak(a.text)
@@ -88,8 +88,6 @@ export default function App() {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
-  // The last answer was about the old step.
-  useEffect(() => setAnswer(null), [step])
 
   return (
     <div className="relative flex h-dvh w-full flex-col overflow-hidden bg-canvas md:flex-row">
@@ -169,7 +167,7 @@ export default function App() {
           <div className={`flex flex-col gap-8 px-5 pt-3 pb-8 md:px-8 ${sheetOpen ? '' : 'hidden'} md:flex`}>
             <Tray onCalibrate={() => setCalibrating(true)} />
             <Checklist />
-            <AskBox onAsk={runAsk} pending={pending} answer={answer} />
+            <AskBox onAsk={runAsk} pending={pending} answer={answer?.step === step ? answer : null} />
             <p className="text-sm leading-relaxed text-ink-soft">
               Hands full? Turn on Voice and say “next”, “back”, “again”, “done” or ask a question.
               <span className="hidden md:inline"> Keys: ← → space R E.</span>
@@ -400,13 +398,13 @@ function ViewHint() {
 function StudyBar() {
   const participant = useStore((s) => s.participant)
   const setParticipant = useStore((s) => s.setParticipant)
-  const [, force] = useState(0)
   const [start] = useState(() => Date.now())
+  const [now, setNow] = useState(start)
   useEffect(() => {
-    const id = window.setInterval(() => force((n) => n + 1), 1000)
+    const id = window.setInterval(() => setNow(Date.now()), 1000)
     return () => window.clearInterval(id)
   }, [])
-  const sec = Math.floor((Date.now() - start) / 1000)
+  const sec = Math.floor((now - start) / 1000)
   return (
     <div className="absolute right-4 bottom-4 flex items-center gap-2 rounded-full bg-ink py-1.5 pr-1.5 pl-4 text-sm text-white md:right-6 md:bottom-6">
       <input

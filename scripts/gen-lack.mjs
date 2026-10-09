@@ -38,12 +38,6 @@ const data = {
       camera: { position: [750, 650, 950], target: [0, 60, 0] },
       moves: [{ instance: 'top', to: { pos: [0, 25, 0], rot: [180, 0, 0] } }],
       active: ['top'],
-      // Both hands flat on the hole side (local -y), fingers reaching in from opposite edges:
-      // under the board while lifting, on top after the flip.
-      hands: [
-        { side: 'right', follow: 'top', mode: 'local', offset: [300, -45, 0], rot: [180, 90, 0], pose: 'flat' },
-        { side: 'left', follow: 'top', mode: 'local', offset: [-300, -45, 0], rot: [180, -90, 0], pose: 'flat' },
-      ],
       showFinishedFace: true,
       arrows: [{ from: [0, 260, 0], to: [0, 90, 0] }],
       tray: [{ part: 'top', count: 1 }, { part: 'cardboard', count: 1 }],
@@ -66,11 +60,6 @@ const data = {
         instance: id, to: { pos: [rowX[i], 400, ROW_Z] }, start: 0.12 * i, end: 0.12 * i + 0.55, spin: 4,
       })),
       active: [...legs, ...screws],
-      // Left hand steadies the leg, right hand pinches and twists the screw.
-      hands: [
-        { side: 'right', follow: 'screw1', offset: [0, 45, 95], rot: [0, 0, 0], pose: 'pinch', twist: 40 },
-        { side: 'left', follow: 'leg1', offset: [-60, 110, 0], rot: [0, 0, 90], pose: 'grip' },
-      ],
       arrows: rowX.map((x) => ({ from: [x, 760, ROW_Z], to: [x, 680, ROW_Z] })),
       tray: [{ part: 'leg', count: 4 }, { part: 'screw', count: 4 }],
       checklist: ['All 4 legs have a screw in one end', 'About 20 mm of screw sticks out of each leg'],
@@ -101,12 +90,6 @@ const data = {
         ]
       }),
       active: [...legs, ...screws],
-      // Left hand presses the tabletop down, right hand twists the leg in.
-      hands: [
-        // Right hand twists the leg nearest the camera, from its +x side (palm -x).
-        { side: 'right', follow: 'leg4', offset: [75, 120, 0], rot: [0, 0, -90], pose: 'grip', twist: 45 },
-        { side: 'left', follow: 'top', offset: [140, 45, -40], rot: [0, 60, 0], pose: 'flat' },
-      ],
       arrows: corners.map(([cx, cz]) => ({ from: [cx, 760, cz], to: [cx, 690, cz] })),
       tray: [{ part: 'leg', count: 4 }],
       warning: 'Hand tight only. Forcing it can strip the hole in the tabletop.',
@@ -139,11 +122,6 @@ const data = {
         { kind: 'rigid', group: assembled, translate: [0, -400, 0], start: 0.75, end: 1 },
       ],
       active: ['top', ...legs],
-      // Hold the two legs on one side and tip the table over.
-      hands: [
-        { side: 'right', follow: 'leg4', mode: 'local', offset: [75, 40, 0], rot: [0, 0, -90], pose: 'grip' },
-        { side: 'left', follow: 'leg2', mode: 'local', offset: [75, 40, 0], rot: [0, 0, -90], pose: 'grip' },
-      ],
       showFinishedFace: true,
       tray: [],
       warning: 'Lift, don’t drag. Dragging can snap a leg off its screw.',

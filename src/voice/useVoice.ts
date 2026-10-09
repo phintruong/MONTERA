@@ -26,7 +26,9 @@ export function useVoice(onCommand: (cmd: Command, heard: string) => void) {
   const rec = useRef<Recognition | null>(null)
   const wanted = useRef(false)
   const handler = useRef(onCommand)
-  handler.current = onCommand
+  useEffect(() => {
+    handler.current = onCommand
+  }, [onCommand])
 
   const stop = useCallback(() => {
     wanted.current = false

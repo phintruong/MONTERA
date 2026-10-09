@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { Vector3 } from 'three'
 import raw from '../data/lack.json'
 import { parseAssembly } from '../data/schema'
-import { explode, frameAt, handAt } from './pose'
+import { explode, frameAt } from './pose'
 import { answerFromFaq } from '../ask/faq'
 import { parseCommand } from '../voice/commands'
 
@@ -72,34 +72,6 @@ describe('frameAt', () => {
   })
 })
 
-describe('handAt', () => {
-  it('every step uses both hands, each next to the part it holds', () => {
-    lack.steps.forEach((s, i) => {
-      expect(s.hands.map((h) => h.side).sort()).toEqual(['left', 'right'])
-      for (const h of s.hands) {
-        for (const t of [0, 0.3, 0.6, 1]) {
-          const f = frameAt(lack, i, t)
-          const pl = handAt(lack, i, t, f, h.side)
-          expect(pl).not.toBeNull()
-          // from the part's centre; the tabletop is held at its edge
-          expect(pl!.p.distanceTo(f.get(h.follow)!.p)).toBeLessThan(400)
-        }
-      }
-    })
-  })
-
-  it('both hands turn with the board they flip, and stay on opposite edges', () => {
-    for (const side of ['left', 'right'] as const) {
-      const before = handAt(lack, 0, 0, frameAt(lack, 0, 0), side)!
-      const after = handAt(lack, 0, 1, frameAt(lack, 0, 1), side)!
-      expect(before.q.angleTo(after.q)).toBeCloseTo(Math.PI, 2)
-    }
-    const f = frameAt(lack, 0, 0.5)
-    const l = handAt(lack, 0, 0.5, f, 'left')!
-    const r = handAt(lack, 0, 0.5, f, 'right')!
-    expect(l.p.distanceTo(r.p)).toBeGreaterThan(550)
-  })
-})
 
 describe('offline FAQ', () => {
   it('answers "which screw" on step 2', () => {

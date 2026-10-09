@@ -137,10 +137,6 @@ function build({ id, name, dims, L, D, shelfY, asm, wall }) {
     camera: camAt([0, 60, 0], [L * 0.8, 700, D + 800]),
     moves: [{ instance: 'top', to: { pos: [0, T / 2, 0], rot: [180, 0, 0] } }],
     active: ['top'],
-    hands: [
-      { side: 'right', follow: 'top', mode: 'local', offset: [L / 2 + 25, -45, 0], rot: [180, 90, 0], pose: 'flat' },
-      { side: 'left', follow: 'top', mode: 'local', offset: [-L / 2 - 25, -45, 0], rot: [180, -90, 0], pose: 'flat' },
-    ],
     showFinishedFace: true,
     arrows: [{ from: [0, 260, 0], to: [0, 90, 0] }],
     tray: [{ part: 'top', count: 1 }, { part: 'cardboard', count: 1 }],
@@ -166,7 +162,6 @@ function build({ id, name, dims, L, D, shelfY, asm, wall }) {
       camera: camAt([0, 60, -D / 2], [500, 520, 900]),
       moves: [{ instance: 'fitting', to: at, start: 0, end: 0.6 }],
       active: ['fitting'],
-      hands: [{ side: 'right', follow: 'fitting', offset: [0, 50, 55], rot: [0, 0, 0], pose: 'pinch' }],
       arrows: [{ from: [0, 200, -D / 2 + 20], to: [0, 110, -D / 2 + 20] }],
       tray: [{ part: 'fitting', count: 1 }, { part: 'fittingScrew', count: 2 }],
       checklist: ['Wall fitting is screwed to the middle of the back edge', 'Both screws are in'],
@@ -191,10 +186,6 @@ function build({ id, name, dims, L, D, shelfY, asm, wall }) {
     camera: bodyCam([L * 0.6, 900, D + 900]),
     moves: screws.map((s, i) => ({ instance: s, to: worldPose(s), start: 0.12 * i, end: 0.12 * i + 0.55, spin: 4 })),
     active: screws,
-    hands: [
-      { side: 'right', follow: 'screw4', offset: [0, 45, 70], rot: [0, 0, 0], pose: 'pinch', twist: 40 },
-      { side: 'left', follow: 'top', offset: [-L / 4, 45, 60], rot: [0, 60, 0], pose: 'flat' },
-    ],
     arrows: corners.map(([x, z]) => ({ from: [x, 230, z], to: [x, 120, z] })),
     tray: [{ part: 'screw', count: 4 }],
     checklist: ['A screw is in each of the 4 corner holes', 'About half of each screw sticks out'],
@@ -225,10 +216,6 @@ function build({ id, name, dims, L, D, shelfY, asm, wall }) {
       ]
     }),
     active: legs,
-    hands: [
-      { side: 'right', follow: 'leg4', offset: [75, 120, 0], rot: [0, 0, -90], pose: 'grip', twist: 45 },
-      { side: 'left', follow: 'top', offset: [L / 4, 45, -40], rot: [0, 60, 0], pose: 'flat' },
-    ],
     arrows: corners.map(([x, z]) => ({ from: [x, 760, z], to: [x, 690, z] })),
     tray: [{ part: 'leg', count: 4 }],
     warning: 'Hand tight only. Forcing it can strip the hole in the tabletop.',
@@ -275,7 +262,6 @@ function build({ id, name, dims, L, D, shelfY, asm, wall }) {
         ...pair.map((i, k) => ({ instance: brackets[i], to: spots[k], start: 0.78 + 0.08 * k, end: 0.92 + 0.08 * k })),
       ],
       active: pair.flatMap((i) => [legs[i], brackets[i]]),
-      hands: [{ side: 'right', follow: brackets[pair[1]], offset: [0, 50, 60], rot: [0, 0, 0], pose: 'pinch' }],
       arrows: spots.map((s) => ({ from: [s.pos[0], s.pos[1] + 170, s.pos[2]], to: [s.pos[0], s.pos[1] + 60, s.pos[2]] })),
       tray: [
         { part: 'guide', count: 1 },
@@ -305,10 +291,6 @@ function build({ id, name, dims, L, D, shelfY, asm, wall }) {
     camera: bodyCam([L * 1.0, 900, D + 1300]),
     moves: upright,
     active: ['top', ...legs],
-    hands: [
-      { side: 'right', follow: 'leg4', mode: 'local', offset: [75, 40, 0], rot: [0, 0, -90], pose: 'grip' },
-      { side: 'left', follow: 'leg2', mode: 'local', offset: [75, 40, 0], rot: [0, 0, -90], pose: 'grip' },
-    ],
     showFinishedFace: true,
     tray: [],
     warning: 'Lift, don’t drag. Dragging can snap a leg off its screw.',
@@ -334,10 +316,6 @@ function build({ id, name, dims, L, D, shelfY, asm, wall }) {
       { instance: 'shelf', to: shelfEnd, start: 0.45, end: 1 },
     ],
     active: ['shelf'],
-    hands: [
-      { side: 'right', follow: 'shelf', mode: 'local', offset: [shelfSize[0] / 2 - 40, -20, shelfSize[2] / 2 - 30], rot: [180, 0, 0], pose: 'flat' },
-      { side: 'left', follow: 'shelf', mode: 'local', offset: [shelfSize[0] / 2 - 40, -20, -shelfSize[2] / 2 + 30], rot: [180, 0, 0], pose: 'flat' },
-    ],
     arrows: [{ from: [L + 50, shelfEnd.pos[1] + 80, 0], to: [L / 2 + 80, shelfEnd.pos[1] + 80, 0] }],
     tray: [{ part: 'shelf', count: 1 }],
     checklist: ['The shelf rests on all 4 brackets'],
@@ -363,7 +341,6 @@ function build({ id, name, dims, L, D, shelfY, asm, wall }) {
     camera: camAt(worldPose('sscrew2').pos, [520, -100, 820]), // from below, to see the screws under the shelf
     moves: shelfScrews.map((s, i) => ({ instance: s, to: worldPose(s), start: 0.15 * i, end: 0.15 * i + 0.4, spin: 3 })),
     active: [...shelfScrews, ...brackets],
-    hands: [{ side: 'right', follow: 'sscrew2', offset: [0, -55, 40], rot: [180, 0, 0], pose: 'pinch', twist: 40 }],
     tray: [{ part: 'screwShort', count: 4 }],
     warning: 'Shorter screws (109041) here. A long screw can come through the top of the shelf.',
     checklist: ['All 4 brackets are screwed to the shelf', 'The shelf does not slide when pushed'],

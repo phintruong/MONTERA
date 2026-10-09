@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { Quaternion, Vector3 } from 'three'
 import { generated, productIds, products } from '../data/products'
 import { parseAssembly } from '../data/schema'
-import { frameAt, handAt } from './pose'
+import { frameAt } from './pose'
 import { answerFromFaq } from '../ask/faq'
 
 const all = productIds.map((id) => [id, parseAssembly(products[id])] as const)
@@ -28,12 +28,6 @@ describe.each(all)('%s', (_, a) => {
         }
       }
     }
-  })
-
-  it('hands follow parts that are on screen', () => {
-    a.steps.forEach((s, i) => {
-      for (const h of s.hands) expect(handAt(a, i, 0.5, frameAt(a, i, 0.5), h.side)).not.toBeNull()
-    })
   })
 
   it('credits its real-world timing source', () => {

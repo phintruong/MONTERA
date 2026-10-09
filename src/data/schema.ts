@@ -62,21 +62,6 @@ const RigidMove = z.object({
 
 const Move = z.union([RigidMove, AbsoluteMove])
 
-// A demonstrating hand (left or right) that follows one instance.
-// mode "local": offset/rot are in the instance's frame (hand turns with it, e.g. flipping a board).
-// mode "world": offset/rot are world-aligned; the hand only twists back and forth while the
-// instance spins (screwing by hand).
-// Hand frame: fingers point -Z, palm faces -Y, origin at the palm centre.
-const Hand = z.object({
-  side: z.enum(['left', 'right']),
-  follow: z.string(),
-  mode: z.enum(['local', 'world']).default('world'),
-  offset: Vec3.default([0, 0, 0]),
-  rot: Vec3.default([0, 0, 0]),
-  pose: z.enum(['flat', 'grip', 'pinch']).default('grip'),
-  twist: z.number().default(0), // degrees each way while the followed instance spins
-})
-
 // How long real people took on this step (wall clock), from a research dataset.
 const Typical = z.object({
   medianSec: z.number().positive(),
@@ -95,7 +80,6 @@ const Step = z.object({
   camera: z.object({ position: Vec3, target: Vec3 }),
   moves: z.array(Move),
   active: z.array(z.string()).default([]),
-  hands: z.array(Hand).max(2).default([]),
   showFinishedFace: z.boolean().default(false),
   arrows: z.array(z.object({ from: Vec3, to: Vec3 })).default([]),
   tray: z.array(z.object({ part: z.string(), count: z.number().int().positive() })),
@@ -130,7 +114,6 @@ export type Part = z.infer<typeof Part>
 export type Instance = z.infer<typeof Instance>
 export type Move = z.infer<typeof Move>
 export type Step = z.infer<typeof Step>
-export type Hand = z.infer<typeof Hand>
 export type Assembly = z.infer<typeof Assembly>
 
 export function parseAssembly(raw: unknown): Assembly {
@@ -148,8 +131,6 @@ export function parseAssembly(raw: unknown): Assembly {
       for (const id of targets) if (!ids.has(id)) throw new Error(`step ${si}: unknown instance ${id}`)
       if (m.end < m.start) throw new Error(`step ${si}: move ends before it starts`)
     }
-    for (const h of s.hands) if (!ids.has(h.follow)) throw new Error(`step ${si}: hand follows unknown instance ${h.follow}`)
-    if (new Set(s.hands.map((h) => h.side)).size !== s.hands.length) throw new Error(`step ${si}: two hands on the same side`)
     for (const t of s.tray) if (!a.parts[t.part]) throw new Error(`step ${si}: tray has unknown part ${t.part}`)
   })
   return a

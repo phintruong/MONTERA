@@ -214,40 +214,6 @@
       "active": [
         "top"
       ],
-      "hands": [
-        {
-          "side": "right",
-          "follow": "top",
-          "mode": "local",
-          "offset": [
-            300,
-            -45,
-            0
-          ],
-          "rot": [
-            180,
-            90,
-            0
-          ],
-          "pose": "flat"
-        },
-        {
-          "side": "left",
-          "follow": "top",
-          "mode": "local",
-          "offset": [
-            -300,
-            -45,
-            0
-          ],
-          "rot": [
-            180,
-            -90,
-            0
-          ],
-          "pose": "flat"
-        }
-      ],
       "showFinishedFace": true,
       "arrows": [
         {
@@ -404,39 +370,6 @@
         "screw2",
         "screw3",
         "screw4"
-      ],
-      "hands": [
-        {
-          "side": "right",
-          "follow": "screw1",
-          "offset": [
-            0,
-            45,
-            95
-          ],
-          "rot": [
-            0,
-            0,
-            0
-          ],
-          "pose": "pinch",
-          "twist": 40
-        },
-        {
-          "side": "left",
-          "follow": "leg1",
-          "offset": [
-            -60,
-            110,
-            0
-          ],
-          "rot": [
-            0,
-            0,
-            90
-          ],
-          "pose": "grip"
-        }
       ],
       "arrows": [
         {
@@ -810,39 +743,6 @@
         "screw3",
         "screw4"
       ],
-      "hands": [
-        {
-          "side": "right",
-          "follow": "leg4",
-          "offset": [
-            75,
-            120,
-            0
-          ],
-          "rot": [
-            0,
-            0,
-            -90
-          ],
-          "pose": "grip",
-          "twist": 45
-        },
-        {
-          "side": "left",
-          "follow": "top",
-          "offset": [
-            140,
-            45,
-            -40
-          ],
-          "rot": [
-            0,
-            60,
-            0
-          ],
-          "pose": "flat"
-        }
-      ],
       "arrows": [
         {
           "from": [
@@ -1070,40 +970,6 @@
         "leg2",
         "leg3",
         "leg4"
-      ],
-      "hands": [
-        {
-          "side": "right",
-          "follow": "leg4",
-          "mode": "local",
-          "offset": [
-            75,
-            40,
-            0
-          ],
-          "rot": [
-            0,
-            0,
-            -90
-          ],
-          "pose": "grip"
-        },
-        {
-          "side": "left",
-          "follow": "leg2",
-          "mode": "local",
-          "offset": [
-            75,
-            40,
-            0
-          ],
-          "rot": [
-            0,
-            0,
-            -90
-          ],
-          "pose": "grip"
-        }
       ],
       "showFinishedFace": true,
       "tray": [],

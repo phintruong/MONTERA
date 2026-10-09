@@ -102,39 +102,3 @@ export function explode(frame: Frame, active: string[], amount: number): Frame {
   }
   return out
 }
-
-export interface HandPlacement extends Placement {
-  pose: 'flat' | 'grip' | 'pinch'
-}
-
-/** Where the step's left or right hand is for (step, t), given the (possibly exploded) frame. */
-export function handAt(a: Assembly, step: number, t: number, frame: Frame, side: 'left' | 'right'): HandPlacement | null {
-  const s = a.steps[step]
-  const hand = s.hands.find((h) => h.side === side)
-  const target = hand && frame.get(hand.follow)
-  if (!hand || !target) return null
-
-  const offset = new Vector3(...hand.offset)
-  const rot = quatFromDeg(hand.rot)
-  if (hand.mode === 'local') {
-    return {
-      p: offset.applyQuaternion(target.q).add(target.p),
-      q: target.q.clone().multiply(rot),
-      pose: hand.pose,
-    }
-  }
-
-  // World mode: twist back and forth about world Y, around the target, while it spins.
-  let angle = 0
-  const spin = s.moves.find((m) => m.kind !== 'rigid' && m.instance === hand.follow && m.spin)
-  if (hand.twist && spin && spin.kind !== 'rigid' && t > spin.start && t < spin.end) {
-    const raw = (t - spin.start) / (spin.end - spin.start)
-    angle = hand.twist * DEG * Math.sin(raw * spin.spin * 2 * Math.PI)
-  }
-  const twist = new Quaternion().setFromAxisAngle(Y, angle)
-  return {
-    p: offset.applyQuaternion(twist).add(target.p),
-    q: twist.multiply(rot),
-    pose: hand.pose,
-  }
-}
