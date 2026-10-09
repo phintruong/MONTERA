@@ -29,3 +29,6 @@ datasets
 # Local env and Vercel link
 .env*
 .vercel
+
+.vercel
+.env*
