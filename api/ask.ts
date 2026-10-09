@@ -21,7 +21,8 @@ interface StepData {
 interface ProductData {
   product: { name: string; dims: string; note?: string }
   parts: Record<string, { name: string; size: number[]; hardware?: boolean }>
-  steps: StepData[]
+  instances: { id: string; part: string; label?: string }[]
+  steps: (StepData & { active?: string[] })[]
 }
 
 // Bundled guides; keep in sync with src/data/products.ts.
@@ -36,6 +37,14 @@ async function loadProduct(id: string): Promise<ProductData | null> {
   } catch {
     return null
   }
+}
+
+/** "Lettered parts in this step: A = Rail, about 31 cm (blue tag on the model); B = …" */
+function lettered(data: ProductData, active: string[]): string {
+  const tags = data.instances
+    .filter((i) => i.label && active.includes(i.id))
+    .map((i) => `${i.label} = ${data.parts[i.part]?.name ?? i.part}`)
+  return tags.length ? `Lettered parts in this step (shown as blue letter tags on the 3D model): ${tags.join('; ')}.` : ''
 }
 
 export async function POST(req: Request): Promise<Response> {
@@ -68,6 +77,8 @@ export async function POST(req: Request): Promise<Response> {
     `Current step ${stepIndex + 1} of ${data.steps.length}: ${step.title}.`,
     `Instruction: ${step.instruction}`,
     `Parts for this step: ${tray}.`,
+    // Parts-only guides name parts by letter ("Join A and B"); the letters are drawn on the 3D model.
+    lettered(data, step.active ?? []),
     step.warning ? `Warning: ${step.warning}` : '',
     `Checklist: ${step.checklist.join('; ')}.`,
     step.typical
@@ -90,6 +101,8 @@ export async function POST(req: Request): Promise<Response> {
       maxOutputTokens: 200,
       timeout: { totalMs: 8000 },
     })
+    // An empty reply would show as a blank answer: fail instead, so the client uses its offline FAQ.
+    if (!text.trim()) return Response.json({ error: 'empty answer' }, { status: 502 })
     return Response.json({ answer: text.trim(), source: 'llm' })
   } catch (err) {
     console.error('ask failed', err)
