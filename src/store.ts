@@ -13,6 +13,9 @@ const raw = await loadProduct(requested).catch((err) => {
 })
 export const productId = raw ? requested : DEFAULT_PRODUCT
 export const assembly = parseAssembly(raw ?? products[DEFAULT_PRODUCT])
+/** The product the link asked for, when it's unknown or couldn't be loaded and the default is shown instead. */
+const asked = params.get('product')
+export const loadFailed = asked && asked !== productId ? asked : null
 
 /** Reload with another product, keeping study/participant params. */
 export function switchProduct(id: string) {

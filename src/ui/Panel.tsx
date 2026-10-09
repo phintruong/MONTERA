@@ -22,7 +22,7 @@ export function StepHeader({ compact }: { compact: boolean }) {
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-end gap-4">
-        <span className="text-[64px] leading-[0.8] font-bold tracking-[-0.05em] tabular-nums md:text-[104px]" aria-hidden>
+        <span className="text-[64px] leading-[0.8] font-bold tracking-[-0.05em] tabular-nums roomy:text-[104px]" aria-hidden>
           {step + 1}
         </span>
         <div className="min-w-0 pb-0.5">
@@ -30,10 +30,10 @@ export function StepHeader({ compact }: { compact: boolean }) {
             Step {step + 1} of {assembly.steps.length}
             {s.typical && <> · most people {shortTime(s.typical.medianSec)}</>}
           </p>
-          <h1 className="text-xl leading-tight font-bold tracking-[-0.01em] md:text-2xl">{s.title}</h1>
+          <h1 className="text-xl leading-tight font-bold tracking-[-0.01em] roomy:text-2xl">{s.title}</h1>
         </div>
       </div>
-      <p className={`max-w-[60ch] text-base leading-relaxed md:text-lg ${compact ? 'line-clamp-2' : ''}`}>{s.instruction}</p>
+      <p className={`max-w-[60ch] text-lg leading-relaxed ${compact ? 'line-clamp-2' : ''}`}>{s.instruction}</p>
       {s.warning && (
         <div className="flex items-start gap-3 rounded-lg bg-yellow px-4 py-3" role="alert">
           <span className="mt-0.5 shrink-0">
@@ -42,7 +42,7 @@ export function StepHeader({ compact }: { compact: boolean }) {
           <p className="text-base leading-snug font-bold">{s.warning}</p>
         </div>
       )}
-      {assembly.product.note && <p className="border-t border-hairline pt-3 text-base text-ink-soft">{assembly.product.note}</p>}
+      {assembly.product.note && !compact && <p className="border-t border-hairline pt-3 text-base text-ink-soft">{assembly.product.note}</p>}
     </div>
   )
 }
@@ -87,7 +87,8 @@ export function Controls() {
         max={1000}
         value={Math.round(t * 1000)}
         onChange={(e) => setT(Number(e.target.value) / 1000, 'scrub')}
-        className="h-5 w-full"
+        // Tall touch target; hidden on short landscape screens, where Replay covers it.
+        className="h-8 w-full short:hidden"
         aria-label="Scrub animation"
       />
       <div className="flex items-center gap-2">

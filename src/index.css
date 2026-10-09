@@ -17,7 +17,19 @@
   --font-sans: "Noto IKEA", "Noto Sans", system-ui, sans-serif;
 }
 
+/* Layout variants (see App.tsx):
+   side:  3D view and panel side by side: wide screens, and phones held sideways.
+   short: little height (phones sideways), where every row of the panel counts.
+   roomy: big screens, where the step numeral and text can grow. */
+@custom-variant side (@media (min-width: 768px), (orientation: landscape) and (max-height: 540px));
+@custom-variant short (@media (max-height: 540px));
+@custom-variant roomy (@media (min-width: 768px) and (min-height: 541px));
+
 html, body, #root { height: 100%; margin: 0; }
+
+/* Taps act immediately (no double-tap-to-zoom delay) and don't select text. */
+button, a, label, input[type="range"], [role="option"] { touch-action: manipulation; }
+button { -webkit-user-select: none; user-select: none; }
 body {
   background: var(--color-canvas);
   color: var(--color-ink);

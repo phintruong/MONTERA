@@ -1,6 +1,6 @@
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { CameraControls, ContactShadows, Edges, Html, Line } from '@react-three/drei'
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { BufferGeometry, DoubleSide, Float32BufferAttribute, Group, Quaternion, Vector3 } from 'three'
 import type { Part } from '../data/schema'
 import { explode, frameAt } from '../engine/pose'
@@ -30,6 +30,8 @@ const SHADOW_FAR = Math.min(1.2, Math.max(0.4, SHADOW_SCALE * 0.25))
 const labelPos = new Vector3()
 
 export function Scene() {
+  // Building big meshes and the first shader compile take a moment: cover the blank canvas until then.
+  const [ready, setReady] = useState(false)
   return (
     <>
       <Canvas camera={{ fov: 38, near: 0.01, far: 50, position: START_CAMERA }} dpr={[1, 2]}>
@@ -46,11 +48,21 @@ export function Scene() {
           resolution={1024}
           color={INK}
         />
-        <Parts />
+        <Parts onReady={() => setReady(true)} />
         <Arrows />
         <CameraRig />
       </Canvas>
       <PartLabels />
+      <div
+        className={`pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-4 bg-canvas text-lg font-bold transition-opacity duration-200 ${
+          ready ? 'opacity-0' : 'opacity-100'
+        }`}
+        role="status"
+        aria-hidden={ready}
+      >
+        <span className="h-1.5 w-12 animate-pulse rounded-full bg-yellow" />
+        Preparing the 3D view…
+      </div>
     </>
   )
 }
@@ -61,10 +73,22 @@ function CameraRig() {
   const replayNonce = useStore((s) => s.replayNonce)
   const record = useStore((s) => s.record)
   const userMoved = useRef(false)
+  // Step cameras are framed for a landscape view. On a portrait canvas (phones) the width is what
+  // runs out, so pull back by the aspect ratio.
+  // Read at apply time, not as a dependency: resizing (e.g. the phone sheet opening) mustn't reset the view.
+  const size = useThree((s) => s.size)
+  const aspect = useRef(1)
+  useEffect(() => {
+    aspect.current = size.width / Math.max(1, size.height)
+  }, [size])
 
   useEffect(() => {
-    const { position: p, target: g } = assembly.steps[step].camera
-    const apply = () => ref.current?.setLookAt(p[0] * MM, p[1] * MM, p[2] * MM, g[0] * MM, g[1] * MM, g[2] * MM, true)
+    const { position: cam, target: g } = assembly.steps[step].camera
+    const apply = () => {
+      const pullBack = aspect.current < 1 ? Math.min(1.9, 1 / aspect.current) : 1
+      const p = cam.map((v, k) => g[k] + (v - g[k]) * pullBack)
+      ref.current?.setLookAt(p[0] * MM, p[1] * MM, p[2] * MM, g[0] * MM, g[1] * MM, g[2] * MM, true)
+    }
     apply()
     // On first mount the controls are not attached yet and drop the call; repeat next frame.
     const id = requestAnimationFrame(apply)
@@ -98,16 +122,20 @@ function CameraRig() {
   )
 }
 
-function Parts() {
+function Parts({ onReady }: { onReady: () => void }) {
   const step = useStore((s) => s.step)
   const active = useMemo(() => new Set(assembly.steps[step].active), [step])
   const showFinished = assembly.steps[step].showFinishedFace
   const refs = useRef(new Map<string, Group>())
   const explodeAmt = useRef(0)
+  const frames = useRef(0)
 
   useFrame(({ camera, size }, dt) => {
     const st = useStore.getState()
-    st.tick(Math.min(dt, 0.1))
+    // Hold step 1's animation until the view has actually drawn, so nobody misses its start.
+    if (frames.current < 3) {
+      if (++frames.current === 3) onReady()
+    } else st.tick(Math.min(dt, 0.1))
     const target = st.exploded ? 1 : 0
     explodeAmt.current += (target - explodeAmt.current) * Math.min(1, dt * 6)
     const frame = explode(frameAt(assembly, st.step, st.t), assembly.steps[st.step].active, explodeAmt.current)

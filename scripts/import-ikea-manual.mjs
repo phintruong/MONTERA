@@ -192,13 +192,25 @@ function build(obj) {
     .filter((a) => home.has(a))
     .map((a) => ({ id: `p${a}`, part: `p${a}`, label: letter.get(a), initial: { pos: exploded.get(a) }, enterStep: 0 }))
 
-  // One camera for the whole product, framing the exploded layout.
-  const reach = W * 0.4 + 80 + W / 2
-  const radius = Math.max(reach, H)
-  const target = [0, r1(H * 0.45), 0]
+  // Each step frames what matters: what's built so far plus where this step's parts start.
+  // Same viewing direction throughout, so steps don't feel like jump cuts.
   const dir = [0.62, 0.5, 0.95]
   const dl = Math.hypot(...dir)
-  const camera = { position: dir.map((d, k) => r1(target[k] + (d / dl) * radius * 3.1)), target }
+  const half = (a) => info.get(a).size.map((x) => x / 2)
+  const frameOf = (points) => {
+    const min = [Infinity, Infinity, Infinity]
+    const max = [-Infinity, -Infinity, -Infinity]
+    for (const [c, h] of points) {
+      for (let k = 0; k < 3; k++) {
+        min[k] = Math.min(min[k], c[k] - h[k])
+        max[k] = Math.max(max[k], c[k] + h[k])
+      }
+    }
+    const target = min.map((x, k) => r1((x + max[k]) / 2))
+    // Never closer than a third of the product, so small parts keep their context.
+    const radius = Math.max(Math.hypot(...max.map((x, k) => x - min[k])) / 2, H / 3)
+    return { position: dir.map((d, k) => r1(target[k] + (d / dl) * radius * 3)), target }
+  }
 
   // ---- steps ---------------------------------------------------------------------------
   const placed = new Set()
@@ -220,6 +232,10 @@ function build(obj) {
         end: Math.min(1, Math.min(start, 0.55) + 0.45),
       }
     })
+    const camera = frameOf([
+      ...[...placed, ...fresh].map((a) => [home.get(a), half(a)]),
+      ...fresh.map((a) => [exploded.get(a), half(a)]),
+    ])
     fresh.forEach((a) => placed.add(a))
 
     let title

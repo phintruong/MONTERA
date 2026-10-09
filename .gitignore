@@ -32,3 +32,7 @@ datasets
 
 .vercel
 .env*
+
+# Study data: participant logs and analysis output stay local
+study-logs
+study-results

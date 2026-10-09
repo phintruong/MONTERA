@@ -34,6 +34,12 @@ export const IconExplode = () => (
     <path d="M4 4l3 3M20 4l-3 3M4 20l3-3M20 20l-3-3" />
   </svg>
 )
+export const IconRecenter = () => (
+  <svg {...base} aria-hidden>
+    <circle cx="12" cy="12" r="3" />
+    <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+  </svg>
+)
 export const IconWarning = () => (
   <svg {...base} aria-hidden>
     <path d="M12 3l10 18H2z" />

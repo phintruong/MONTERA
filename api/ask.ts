@@ -1,6 +1,8 @@
 // Vercel Function: POST /api/ask { product?: string, step: number, question: string } -> { answer: string }
 // The model only sees the current step and its parts. Auth via AI Gateway (OIDC on Vercel,
 // or AI_GATEWAY_API_KEY locally).
+import { readFile } from 'node:fs/promises'
+import { join } from 'node:path'
 import { generateText } from 'ai'
 import lack from '../src/data/lack.json' with { type: 'json' }
 import lackCoffee from '../src/data/lack-coffee.json' with { type: 'json' }
@@ -8,8 +10,33 @@ import lackTv from '../src/data/lack-tv.json' with { type: 'json' }
 
 const MODEL = 'anthropic/claude-haiku-5-5'
 
-// Keep in sync with src/data/products.ts.
-const PRODUCTS = { lack, 'lack-coffee': lackCoffee, 'lack-tv': lackTv }
+interface StepData {
+  title: string
+  instruction: string
+  tray: { part: string; count: number }[]
+  warning?: string
+  checklist: string[]
+  typical?: { n: number; medianSec: number; p25Sec: number; p75Sec: number }
+}
+interface ProductData {
+  product: { name: string; dims: string; note?: string }
+  parts: Record<string, { name: string; size: number[]; hardware?: boolean }>
+  steps: StepData[]
+}
+
+// Bundled guides; keep in sync with src/data/products.ts.
+const PRODUCTS: Record<string, unknown> = { lack, 'lack-coffee': lackCoffee, 'lack-tv': lackTv }
+
+/** Bundled guide, or a generated one from public/products/ (shipped with this function via vercel.json). */
+async function loadProduct(id: string): Promise<ProductData | null> {
+  if (id in PRODUCTS) return PRODUCTS[id] as ProductData
+  if (!/^(im|fp)-[a-z0-9-]+$/.test(id)) return null
+  try {
+    return JSON.parse(await readFile(join(process.cwd(), 'public', 'products', `${id}.json`), 'utf8')) as ProductData
+  } catch {
+    return null
+  }
+}
 
 export async function POST(req: Request): Promise<Response> {
   let body: { product?: unknown; step?: unknown; question?: unknown }
@@ -18,16 +45,16 @@ export async function POST(req: Request): Promise<Response> {
   } catch {
     return Response.json({ error: 'bad json' }, { status: 400 })
   }
-  // Generated guides (public/products/) are not bundled here: say so, and the client uses its offline FAQ.
+  // Unknown products get a 404 and the client falls back to its offline FAQ.
   const id = typeof body.product === 'string' ? body.product : 'lack'
-  if (!(id in PRODUCTS)) return Response.json({ error: 'no model answers for this product' }, { status: 404 })
-  const data = PRODUCTS[id as keyof typeof PRODUCTS]
+  const data = await loadProduct(id)
+  if (!data) return Response.json({ error: 'unknown product' }, { status: 404 })
   const stepIndex = Number(body.step)
   const question = typeof body.question === 'string' ? body.question.trim().slice(0, 300) : ''
   const step = data.steps[stepIndex]
   if (!step || !question) return Response.json({ error: 'need step and question' }, { status: 400 })
 
-  const parts = data.parts as Record<string, { name: string; size: number[]; hardware?: boolean }>
+  const parts = data.parts
   const tray = step.tray.map((t) => `${parts[t.part].name} ×${t.count}`).join(', ') || 'none'
   const allParts = Object.values(parts)
     .map((p) => `${p.name}${p.hardware ? ` (${p.size[1]} mm long)` : ''}`)
@@ -35,13 +62,15 @@ export async function POST(req: Request): Promise<Response> {
 
   const context = [
     `Product: ${data.product.name} (${data.product.dims}).`,
+    // Generated guides leave out fittings: the model must send people to the paper manual for those.
+    data.product.note ? `About this guide: ${data.product.note}` : '',
     `All parts in the box: ${allParts}.`,
     `Current step ${stepIndex + 1} of ${data.steps.length}: ${step.title}.`,
     `Instruction: ${step.instruction}`,
     `Parts for this step: ${tray}.`,
-    'warning' in step && step.warning ? `Warning: ${step.warning}` : '',
+    step.warning ? `Warning: ${step.warning}` : '',
     `Checklist: ${step.checklist.join('; ')}.`,
-    'typical' in step && step.typical
+    step.typical
       ? `In ${step.typical.n} recorded builds, most people took ${Math.round(step.typical.medianSec)} s on this step (middle half ${Math.round(step.typical.p25Sec)}–${Math.round(step.typical.p75Sec)} s).`
       : '',
   ]

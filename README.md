@@ -23,11 +23,30 @@ Generated products are fetched on demand, one per page load. `src/data/products.
 
 ## Using it
 
+- Phones: built for a phone propped up about 1 m away.
+  - Step controls stay pinned at the bottom of the screen.
+  - Swipe the panel left or right to change step; you feel a short buzz when the step changes.
+  - The screen stays on while the guide is open.
+  - Held sideways, the 3D view and panel sit side by side.
 - Keys: ← → next/back, space play/pause, R replay, E spread parts out.
 - 3D view: drag to turn, right-drag to move, scroll or pinch to zoom, double-click a part to turn around it. "Reset view" puts the camera back.
 - Voice (Chrome): "next", "back", "again", "done", "explode", "question …" or just ask "which screw…".
-- Ask: `api/ask.ts` is a Vercel Function using AI Gateway, for the 3 full guides. Other products, and `npm run dev` (no functions), answer from the offline per-step FAQ.
-- Study mode: `?study=1&cond=app&pid=P01&product=lack` shows a timer and an Export button for the JSON log, and hides the product search so a session can't switch products by accident. The export includes the product and a `baseline` of real-world step times.
+- Ask: `api/ask.ts` is a Vercel Function using AI Gateway, for every product. Generated guides reach it through `vercel.json`'s `includeFiles`. In `npm run dev` there are no functions, so answers come from the offline per-step FAQ.
+
+## User study
+
+| Condition | Link | What it shows |
+| --- | --- | --- |
+| App | `?study=1&cond=app&pid=P01&product=lack` | The guide with a timer and an Export button. The product search is hidden, so a session can't switch products by accident. |
+| Paper | `?study=1&cond=paper&pid=P02&product=lack` | An experimenter screen, with no 3D. Tap "Step N done" as the participant finishes each step, plus Stuck / Mistake / Asked when you see them. Export at the end. |
+
+Both export the same JSON log, which includes a `baseline` of real-world step times. Put the exports in `study-logs/` (gitignored) and run:
+
+```
+node scripts/analyze-study.mjs study-logs/
+```
+
+It writes `study-results/sessions.csv` (total time and counts per session) and `study-results/steps.csv` (time per step against the real-world baseline), and prints medians per condition.
 
 ## Internals
 

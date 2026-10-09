@@ -3,11 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#fffefb" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <title>Assembly Guide</title>
+    <style>
+      /* Shown while the product loads (before React mounts and replaces it). */
+      #boot { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; background: #fffefb; color: #111; font: 700 18px system-ui, sans-serif; }
+      #boot i { width: 48px; height: 6px; border-radius: 3px; background: #dadada; overflow: hidden; position: relative; }
+      #boot i::after { content: ""; position: absolute; inset: 0; width: 40%; background: #ffdb00; animation: boot 1s cubic-bezier(.25,1,.5,1) infinite; }
+      @keyframes boot { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+      @media (prefers-reduced-motion: reduce) { #boot i::after { animation: none; width: 100%; } }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><div id="boot" role="status"><i></i>Loading the guide…</div></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
