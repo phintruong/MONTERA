@@ -24,6 +24,16 @@ node scripts/analyze-study.mjs study-logs/   # exported study logs -> study-resu
 
 **Generated products.** Besides the 3 bundled LACK guides, `public/products/*.json` are fetched on demand (`loadProduct`). `im-*` come from the IKEA-Manual dataset (run `scripts/extract-ikea-manual.py` with a Python that has pyarrow + numpy first; approximate scale, fittings not shown). `fp-*` are box models built from nominal outside sizes with a generic build order: cases are built lying on their front, then stood up with one rigid turn about the bottom-front edge. `products.test.ts` checks every generated file (flat-pack ones: no box corner below the floor at any time, upright at the end). The header picker is a search box over all of them (accents folded, so "poang" finds POÄNG).
 
+**Physically plausible, enforced by tests.** `products.test.ts` checks every hand-made and simplified guide at many moments of every step (`src/engine/collide.ts`):
+- No two solid parts pass through each other. Hardware is exempt, since screws go into holes.
+- Nothing floats at the end of a step, and parts waiting their turn rest on something.
+- "Spread out" never sinks parts into the floor.
+- Arrows never run through a part while they're shown. Use the step's `arrowsAt` to show them only once their target is in place.
+
+When a move fails these, give it a real path: lift clear, travel above, lower in, or turn a board over while it's held up. Don't loosen the tolerance. IKEA-Manual guides are exempt from the overlap check, because their real meshes interlock.
+
+**Camera framing.** `src/engine/framing.ts` frames each step at runtime for the canvas's aspect: the authored `camera` only gives the viewing direction. The framed region covers everything the step is about over the whole step: active parts, moved parts and arrows. `framing.test.ts` checks this for all products at phone, square and desktop shapes.
+
 **Hands.** Removed for good (models, `handAt`, the step `hands` field). Don't reintroduce them.
 
 **Layout and phones.** Phone portrait is the primary layout. `src/index.css` defines three custom variants:

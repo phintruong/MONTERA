@@ -86,7 +86,10 @@ export function frameAt(a: Assembly, step: number, t: number): Frame {
   return evaluate(a, s, Math.min(1, Math.max(0, t)), stepStarts(a)[s])
 }
 
-/** Push active instances away from the centroid of everything visible. */
+/**
+ * Push active instances away from the centroid of everything visible: sideways or up, never
+ * down (that would sink parts into the floor).
+ */
 export function explode(frame: Frame, active: string[], amount: number): Frame {
   if (amount <= 0 || active.length === 0) return frame
   const centroid = new Vector3()
@@ -97,6 +100,7 @@ export function explode(frame: Frame, active: string[], amount: number): Frame {
     const pl = out.get(id)
     if (!pl) continue
     const dir = pl.p.clone().sub(centroid)
+    dir.y = Math.max(0, dir.y)
     if (dir.lengthSq() < 1) dir.set(0, 1, 0)
     pl.p.add(dir.normalize().multiplyScalar(250 * amount))
   }

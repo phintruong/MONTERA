@@ -135,10 +135,16 @@ function build({ id, name, dims, L, D, shelfY, asm, wall }) {
     instruction: 'Lay the cardboard flat. Put the tabletop on it with the glossy side facing down, so the pre-drilled holes face up.',
     durationSec: 3.5,
     camera: camAt([0, 60, 0], [L * 0.8, 700, D + 800]),
-    moves: [{ instance: 'top', to: { pos: [0, T / 2, 0], rot: [180, 0, 0] } }],
+    // Turn it over while it's held up (it would cut through the cardboard otherwise), then lower it.
+    moves: [
+      { instance: 'top', to: { pos: [0, 380, 0], rot: [180, 0, 0] }, start: 0, end: 0.55 },
+      { instance: 'top', to: { pos: [0, T / 2, 0], rot: [180, 0, 0] }, start: 0.6, end: 1 },
+    ],
     active: ['top'],
     showFinishedFace: true,
-    arrows: [{ from: [0, 260, 0], to: [0, 90, 0] }],
+    // Beside the board, not through it while it turns over.
+    arrows: [{ from: [L / 2 + 70, 260, 0], to: [L / 2 + 70, 90, 0] }],
+    arrowsAt: 0.55, // "lower it": shown once it's turned over
     tray: [{ part: 'top', count: 1 }, { part: 'cardboard', count: 1 }],
     warning: 'Glossy side DOWN. If you can see the shiny surface, flip it. The holes must face you.',
     checklist: ['Tabletop is on the cardboard, glossy side down', 'I can see the 4 corner holes'],
@@ -241,7 +247,8 @@ function build({ id, name, dims, L, D, shelfY, asm, wall }) {
   const bracketSpot = (i) => [corners[i][0], bracketY, Math.sign(corners[i][1]) * (D / 2 - LEG - BR[2] / 2)]
 
   const bracketStep = (stepId, title, pair, deg, intro) => {
-    const tipMoves = tip(deg)
+    // The tip (lift, turn, set down) finishes by 0.7, before the brackets and arrows come in.
+    const tipMoves = tip(deg).map((m) => ({ ...m, start: m.start * 0.7, end: m.end * 0.7 }))
     pair.forEach((i, k) => {
       const ground = bodyBox()
       enter(brackets[i], 'bracket', { pos: [ground.centre.x - 60 + 120 * k, BR[1] / 2, ground.max.z + 160] })
@@ -262,7 +269,13 @@ function build({ id, name, dims, L, D, shelfY, asm, wall }) {
         ...pair.map((i, k) => ({ instance: brackets[i], to: spots[k], start: 0.78 + 0.08 * k, end: 0.92 + 0.08 * k })),
       ],
       active: pair.flatMap((i) => [legs[i], brackets[i]]),
-      arrows: spots.map((s) => ({ from: [s.pos[0], s.pos[1] + 170, s.pos[2]], to: [s.pos[0], s.pos[1] + 60, s.pos[2]] })),
+      // Down onto each bracket, starting below the upper leg (close above on the shallow TV bench).
+      arrows: spots.map((s) => ({
+        from: [s.pos[0], Math.min(s.pos[1] + 170, D - LEG - 15), s.pos[2]],
+        to: [s.pos[0], s.pos[1] + 60, s.pos[2]],
+      })),
+      // Only once the table lies on its side; mid-turn they'd run through it.
+      arrowsAt: 0.7,
       tray: [
         { part: 'guide', count: 1 },
         { part: 'bracket', count: 2 },
@@ -311,9 +324,12 @@ function build({ id, name, dims, L, D, shelfY, asm, wall }) {
     instruction: 'Slide the shelf in from one end, between the legs, so it rests on the 4 brackets.',
     durationSec: 5,
     camera: bodyCam([L * 1.1, 700, D + 1100]),
+    // Out along the front (clear of the legs), round past the end at shelf height, then in
+    // between the legs: a straight line from the floor would cut through the front leg.
     moves: [
-      { instance: 'shelf', to: { pos: [L + 120, shelfEnd.pos[1], shelfEnd.pos[2]], rot: shelfEnd.rot }, start: 0, end: 0.4 },
-      { instance: 'shelf', to: shelfEnd, start: 0.45, end: 1 },
+      { instance: 'shelf', to: { pos: [L + 120, SHELF_T / 2, D / 2 + shelfSize[2] / 2 + 140], rot: shelfEnd.rot }, start: 0, end: 0.3 },
+      { instance: 'shelf', to: { pos: [L + 120, shelfEnd.pos[1], shelfEnd.pos[2]], rot: shelfEnd.rot }, start: 0.3, end: 0.5 },
+      { instance: 'shelf', to: shelfEnd, start: 0.55, end: 1 },
     ],
     active: ['shelf'],
     arrows: [{ from: [L + 50, shelfEnd.pos[1] + 80, 0], to: [L / 2 + 80, shelfEnd.pos[1] + 80, 0] }],

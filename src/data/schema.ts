@@ -82,6 +82,8 @@ const Step = z.object({
   active: z.array(z.string()).default([]),
   showFinishedFace: z.boolean().default(false),
   arrows: z.array(z.object({ from: Vec3, to: Vec3 })).default([]),
+  // When in the step (0..1) the arrows appear: after the parts they point at have moved into place.
+  arrowsAt: z.number().min(0).max(1).default(0),
   tray: z.array(z.object({ part: z.string(), count: z.number().int().positive() })),
   warning: z.string().optional(),
   checklist: z.array(z.string()).default([]),

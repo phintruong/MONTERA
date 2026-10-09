@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest'
 import { Quaternion, Vector3 } from 'three'
 import { generated, productIds, products } from '../data/products'
 import { parseAssembly } from '../data/schema'
-import { frameAt } from './pose'
+import { explode, frameAt } from './pose'
+import { arrowHits, collisions, unsupported } from './collide'
 import { answerFromFaq } from '../ask/faq'
 
 const all = productIds.map((id) => [id, parseAssembly(products[id])] as const)
@@ -112,6 +113,67 @@ describe('simplified flat-pack guides', () => {
     for (const id of a.steps[last].active) expect(end.get(id)!.q.angleTo(new Quaternion())).toBeLessThan(1e-6)
     expect(lowest(a, last, 1)).toBeCloseTo(0, 3)
   })
+})
+
+// The physical check: no two solid parts pass through each other at any moment of any step.
+// (IKEA-Manual guides are left out: their real meshes interlock, so bounding boxes overlap by design.)
+const T = Array.from({ length: 21 }, (_, i) => i / 20)
+const firstCollision = (a: ReturnType<typeof parseAssembly>) => {
+  for (let s = 0; s < a.steps.length; s++) {
+    for (const t of T) {
+      const hit = collisions(a, frameAt(a, s, t))[0]
+      if (hit) return `${a.steps[s].id} t=${t}: ${hit.a} goes ${hit.depth} mm into ${hit.b}`
+    }
+  }
+  return null
+}
+// Nothing hangs in mid-air: at the end of every step everything rests on the floor or on parts
+// that do, and parts waiting their turn sit on something too.
+const firstFloating = (a: ReturnType<typeof parseAssembly>) => {
+  for (let s = 0; s < a.steps.length; s++) {
+    const moving = new Set(a.steps[s].moves.flatMap((m) => (m.kind === 'rigid' ? m.group : [m.instance])))
+    const atEnd = unsupported(a, frameAt(a, s, 1))
+    if (atEnd.length) return `end of ${a.steps[s].id}: ${atEnd.join(', ')} in mid-air`
+    const waiting = unsupported(a, frameAt(a, s, 0)).filter((id) => !moving.has(id))
+    if (waiting.length) return `start of ${a.steps[s].id}: ${waiting.join(', ')} hovering`
+  }
+  return null
+}
+// "Spread out" moves parts apart for a better look, but never into the floor.
+const firstSunkBySpread = (a: ReturnType<typeof parseAssembly>) => {
+  for (let s = 0; s < a.steps.length; s++) {
+    const spread = explode(frameAt(a, s, 1), a.steps[s].active, 1)
+    for (const [id, pl] of spread) {
+      if (id === 'cardboard') continue
+      const [w, h, d] = a.parts[a.instances.find((i) => i.id === id)!.part].size
+      for (const c of [-1, 1].flatMap((x) => [-1, 1].flatMap((y) => [-1, 1].map((z) => new Vector3((x * w) / 2, (y * h) / 2, (z * d) / 2))))) {
+        const y = c.applyQuaternion(pl.q).add(pl.p).y
+        if (y < -1) return `${a.steps[s].id}: ${id} ${Math.round(y)} mm below the floor`
+      }
+    }
+  }
+  return null
+}
+// Arrows point at where a part goes; they never run through a part while they're shown.
+const firstArrowThrough = (a: ReturnType<typeof parseAssembly>) => {
+  for (let s = 0; s < a.steps.length; s++) {
+    for (const t of [0, 0.25, 0.5, 0.75, 0.8, 0.9, 0.95]) {
+      if (t < a.steps[s].arrowsAt) continue // not shown yet
+      const frame = frameAt(a, s, t)
+      for (const ar of a.steps[s].arrows) {
+        const hit = arrowHits(a, frame, new Vector3(...ar.from), new Vector3(...ar.to))
+        if (hit.length) return `${a.steps[s].id} t=${t}: arrow runs through ${hit.join(', ')}`
+      }
+    }
+  }
+  return null
+}
+const physical = [...all, ...fromCatalog('flatpack').map((f) => [f, parseAssembly(modules[`../../public/products/${f}`])] as const)]
+describe('physically plausible', () => {
+  it.each(physical)('%s: parts never pass through each other', (_, a) => expect(firstCollision(a)).toBeNull())
+  it.each(physical)('%s: nothing floats', (_, a) => expect(firstFloating(a)).toBeNull())
+  it.each(physical)('%s: spread out stays above the floor', (_, a) => expect(firstSunkBySpread(a)).toBeNull())
+  it.each(physical)('%s: arrows never run through parts', (_, a) => expect(firstArrowThrough(a)).toBeNull())
 })
 
 describe('generated guides (IKEA-Manual)', () => {

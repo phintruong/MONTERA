@@ -404,9 +404,9 @@ function ProductPicker() {
 }
 
 /** Over the 3D view: put the camera back where the step wants it, and how to move it. */
-const TOUCH_HINT_KEY = 'ikea3d.touchHintSeen'
+const TOUCH_HINT_KEY = 'ikea3d.viewHintSeen'
 function ViewHint() {
-  // Phones get a gesture hint until the first touch on the 3D view (remembered per browser).
+  // A gesture hint until the first press on the 3D view (remembered per browser).
   const [touchSeen, setTouchSeen] = useState(() => {
     try {
       return localStorage.getItem(TOUCH_HINT_KEY) === '1'
@@ -440,12 +440,11 @@ function ViewHint() {
         <IconRecenter />
         <span className="hidden side:inline">Reset view</span>
       </button>
-      <p className="pointer-events-none absolute bottom-6 left-48 hidden max-w-[48ch] text-sm text-ink-soft pointer-fine:side:block">
-        Drag to turn, right-drag to move, scroll to zoom. Double-click a part to turn around it.
-      </p>
+      {/* How to move the view: a solid pill (never loose text over the model), gone after the first drag. */}
       {!touchSeen && (
-        <p className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-ink px-4 py-2 text-base whitespace-nowrap text-white pointer-fine:hidden side:bottom-6 side:left-48 short:side:bottom-3 short:side:left-44">
-          Drag to turn · pinch to zoom
+        <p className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-ink px-4 py-2 text-base whitespace-nowrap text-white side:bottom-[30px] side:left-48 short:side:bottom-[18px] short:side:left-44">
+          <span className="pointer-fine:hidden">Drag to turn · pinch to zoom</span>
+          <span className="hidden pointer-fine:inline">Drag to turn · right-drag to move · scroll to zoom</span>
         </p>
       )}
     </>

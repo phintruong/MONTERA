@@ -1,4 +1,4 @@
-﻿// Simplified step guides for common box-built IKEA products, from their outside measurements:
+// Simplified step guides for common box-built IKEA products, from their outside measurements:
 // KALLAX shelving, BILLY bookcases, EKET cabinets and LINNMON/ADILS desks, in several sizes.
 // Writes public/products/fp-*.json (fetched on demand) and src/data/catalog-flatpack.json.
 //
@@ -11,9 +11,43 @@
 // Cases (shelves, cabinets) are built lying on their front, the way the paper manuals do it, then
 // stood up with one rigid turn about the bottom-front edge. Desks are built upside down and flipped.
 import { mkdirSync, writeFileSync } from 'node:fs'
+import { Euler, Quaternion, Vector3 } from 'three'
 
 const OUT = new URL('../public/products/', import.meta.url)
 const r1 = (x) => Math.round(x * 10) / 10 + 0
+const r2 = (x) => Math.round(x * 100) / 100 + 0
+
+// The six ways a box can lie with its faces axis-aligned (Euler degrees, as the schema uses).
+const ORIENTATIONS = [
+  [0, 0, 0],
+  [90, 0, 0],
+  [0, 0, 90],
+  [0, 90, 0],
+  [90, 90, 0],
+  [90, 0, 90],
+]
+/** World extents of a box of `size` turned by Euler `rot` (degrees). */
+function extents(size, rot) {
+  const q = new Quaternion().setFromEuler(new Euler(...rot.map((d) => (d * Math.PI) / 180)))
+  const out = [0, 0, 0]
+  for (let k = 0; k < 3; k++) {
+    const axis = new Vector3(...[0, 1, 2].map((j) => (j === k ? size[k] : 0))).applyQuaternion(q)
+    out[0] += Math.abs(axis.x)
+    out[1] += Math.abs(axis.y)
+    out[2] += Math.abs(axis.z)
+  }
+  return out.map(r1)
+}
+/**
+ * How a part lies flat while it waits: thinnest side down. Prefer its final orientation when that
+ * is already flat (no turn needed later), otherwise the longest side along z (a tidy column).
+ */
+function flatRot(size, final) {
+  const options = ORIENTATIONS.map((rot) => ({ rot, ext: extents(size, rot) }))
+  const lowest = Math.min(...options.map((o) => o.ext[1]))
+  const flat = options.filter((o) => o.ext[1] <= lowest + 0.5)
+  return flat.find((o) => o.rot.join() === final.join()) ?? flat.sort((a, b) => b.ext[2] - a.ext[2])[0]
+}
 const WHITE = '#fbfaf6'
 const cm = (mm) => Math.round(mm / 10)
 const NOTE = 'Simplified guide: dowels, cam locks, nails and screws aren’t shown. Your paper manual shows which to use.'
@@ -50,42 +84,73 @@ function caseGuide({ id, name, category, dims, W, H, D, parts, pieces, groups, a
   // Lying on its front: front on the floor, top towards +z, bottom-front edge at z = D/2.
   const lie = ([x, y, z]) => [r1(x), r1(D / 2 - z), r1(D / 2 + y)]
   const at = new Map(pieces.map((p) => [p.id, p]))
-  const lyingCentre = [0, D / 2, D / 2 + H / 2]
-  const push = 0.3 * Math.max(W, H) + 150
-
-  // Parts wait around the build, each pushed out from the centre (lying parts) or stacked to
-  // the right, flat on the floor (parts added after it stands).
   const later = new Set(after.flatMap((g) => g.ids))
-  let stack = 0
-  const instances = pieces.map((p, i) => {
-    if (later.has(p.id)) {
-      const size = parts[p.part].size
-      const pos = [r1(W / 2 + 250 + size[0] / 2), r1(size[1] / 2 + stack), 0]
-      stack += size[1] + 6
-      return { id: p.id, part: p.part, initial: { pos }, enterStep: 0 }
-    }
-    const c = lie(p.pos)
-    let dx = c[0] - lyingCentre[0]
-    let dz = c[2] - lyingCentre[2]
-    const len = Math.hypot(dx, dz)
-    if (len < 40) {
-      const ang = (i / pieces.length) * Math.PI * 2 + 0.6
-      ;[dx, dz] = [Math.cos(ang), Math.sin(ang)]
-    } else {
-      ;[dx, dz] = [dx / len, dz / len]
-    }
-    return { id: p.id, part: p.part, initial: { pos: [r1(c[0] + dx * push), c[1], r1(c[2] + dz * push)], rot: [90, 0, 0] }, enterStep: 0 }
-  })
 
-  const lyingCam = cam(lyingCentre, 1.3 * (0.5 * Math.max(W, H) + push), [0.55, 1.1, 0.7])
-  const standCam = cam([0, H * 0.45, 0], 0.5 * Math.hypot(W, H, D) + 250, [0.6, 0.4, 1])
+  // Staging: every part waits flat on the floor to the right of the build, side by side in
+  // columns, so nothing overlaps. Clear of the lying build, the stand-up turn and the standing
+  // case, which all stay within |x| <= W/2.
+  const GAP = 60
+  const columnLength = Math.max(H + D, 1200)
+  const stage = new Map() // id -> { pos, rot }
+  let colX = W / 2 + 300
+  let colWidth = 0
+  let z = -D / 2
+  for (const p of pieces) {
+    const target = later.has(p.id) ? [0, 0, 0] : [90, 0, 0]
+    const { rot, ext } = flatRot(parts[p.part].size, target)
+    if (z + ext[2] > -D / 2 + columnLength && z > -D / 2) {
+      colX += colWidth + GAP
+      colWidth = 0
+      z = -D / 2
+    }
+    stage.set(p.id, { pos: [r1(colX + ext[0] / 2), r1(ext[1] / 2), r1(z + ext[2] / 2)], rot })
+    colWidth = Math.max(colWidth, ext[0])
+    z += ext[2] + GAP
+  }
+  const instances = pieces.map((p) => ({ id: p.id, part: p.part, initial: stage.get(p.id), enterStep: 0 }))
+
+  // Frame the lying build (x ±W/2, z D/2..D/2+H) together with the staging area.
+  const stageEnd = colX + colWidth
+  const zMax = Math.max(D / 2 + H, -D / 2 + columnLength)
+  const lyingCam = cam([(stageEnd - W / 2) / 2, D / 2, (zMax - D / 2) / 2], 0.5 * Math.hypot(stageEnd + W / 2, zMax + D / 2), [0.35, 1.2, 0.75])
+  const standCam = cam([(stageEnd - W / 2) / 3, H * 0.45, 0], 0.5 * Math.hypot(stageEnd + W / 2, H, D) + 150, [0.6, 0.4, 1])
   const turnCam = cam([0, H * 0.45, H * 0.3], 0.5 * Math.hypot(W, H * 1.4) + 150, [1, 0.45, 0.5])
 
-  const slide = (ids, toPose) =>
-    ids.map((pid, i) => {
-      const start = ids.length > 1 ? Math.min(0.55, (0.5 * i) / (ids.length - 1)) : 0.1
-      return { instance: pid, to: toPose(pid), start: r1(start * 100) / 100, end: Math.min(1, r1((start + 0.45) * 100) / 100) }
+  // One part at a time (two moving parts could cross), each in its own slice of the step.
+  const sequence = (ids, path) =>
+    ids.flatMap((pid, i) => {
+      const legs = path(pid)
+      const slot = 1 / ids.length
+      return legs.map(([to, a, b]) => ({ instance: pid, to, start: r2(slot * (i + a)), end: r2(slot * (i + b)) }))
     })
+  // Lying build: up off the stage, across above everything (turning on the way), straight down
+  // into place. Every panel spans the full depth and no two share floor space, so lowering
+  // never cuts through a neighbour.
+  const intoLyingCase = (pid) => {
+    const s = stage.get(pid)
+    const size = parts[at.get(pid).part].size
+    const high = r1(D + Math.hypot(...size) / 2 + 60)
+    const end = { pos: lie(at.get(pid).pos), rot: [90, 0, 0] }
+    return [
+      [{ pos: [s.pos[0], high, s.pos[2]], rot: s.rot }, 0.05, 0.3],
+      [{ pos: [end.pos[0], high, end.pos[2]], rot: end.rot }, 0.3, 0.65],
+      [end, 0.65, 0.95],
+    ]
+  }
+  // Standing: up to its height beside the case, round to the front, then slide straight in.
+  const intoStandingCase = (pid) => {
+    const s = stage.get(pid)
+    const sd = parts[at.get(pid).part].size[2]
+    const end = { pos: at.get(pid).pos.map(r1), rot: [0, 0, 0] }
+    const front = r1(D / 2 + sd / 2 + 60)
+    return [
+      [{ pos: [s.pos[0], end.pos[1], s.pos[2]], rot: s.rot }, 0.05, 0.25],
+      [{ pos: [s.pos[0], end.pos[1], front], rot: s.rot }, 0.25, 0.45],
+      [{ pos: [end.pos[0], end.pos[1], front], rot: s.rot }, 0.45, 0.65],
+      [end, 0.65, 0.95],
+    ]
+  }
+  const stepDuration = (n) => r1(Math.min(14, 2 + 1.4 * n))
   const tray = (ids) => {
     const counts = new Map()
     for (const pid of ids) counts.set(at.get(pid).part, (counts.get(at.get(pid).part) ?? 0) + 1)
@@ -99,9 +164,9 @@ function caseGuide({ id, name, category, dims, W, H, D, parts, pieces, groups, a
       id: `step-${si + 1}`,
       title: g.title,
       instruction: g.instruction,
-      durationSec: r1(Math.min(7, 2.5 + 0.5 * g.ids.length)),
+      durationSec: stepDuration(g.ids.length),
       camera: lyingCam,
-      moves: slide(g.ids, (pid) => ({ pos: lie(at.get(pid).pos), rot: [90, 0, 0] })),
+      moves: sequence(g.ids, intoLyingCase),
       active: g.ids,
       tray: tray(g.ids),
       warning: g.warning,
@@ -136,9 +201,9 @@ function caseGuide({ id, name, category, dims, W, H, D, parts, pieces, groups, a
       id: `after-${i + 1}`,
       title: g.title,
       instruction: g.instruction,
-      durationSec: r1(Math.min(7, 2.5 + 0.5 * g.ids.length)),
+      durationSec: stepDuration(g.ids.length),
       camera: standCam,
-      moves: slide(g.ids, (pid) => ({ pos: at.get(pid).pos.map(r1), rot: [0, 0, 0] })),
+      moves: sequence(g.ids, intoStandingCase),
       active: g.ids,
       tray: tray(g.ids),
       warning: g.warning,
@@ -258,7 +323,8 @@ function billy(width, height) {
     end: box(`Top/bottom, ${cm(W - 2 * t)} cm`, [W - 2 * t, t, Dc]),
     plinth: box(`Plinth, ${cm(W - 2 * t)} cm`, [W - 2 * t, plinth, t]),
     back: box(`Back panel (hardboard), ${cm(H)} cm`, [W - 4, H - 4, 3]),
-    shelf: box(`Shelf, ${cm(W - 2 * t - 4)} cm`, [W - 2 * t - 4, t, Dc - 20]),
+    // Fits snugly between the sides: it rests on shelf pins there (not modelled).
+    shelf: box(`Shelf, ${cm(W - 2 * t - 2)} cm`, [W - 2 * t - 2, t, Dc - 20]),
   }
   const fixedY = r1(H * 0.42)
   const pieces = [
@@ -442,11 +508,17 @@ function linnmon(width, depth) {
         : 'Screw in the other two legs the same way.',
     durationSec: 5,
     camera: camUpside,
-    // Raise each leg upright above its hole (high enough to clear the floor while it turns), then screw it in.
-    moves: [a, b].flatMap((i, k) => [
-      { instance: `leg${i + 1}`, to: { ...legUp(i), pos: [corners[i][0], r1(t + L / 2 + 300), corners[i][1]] }, start: k * 0.3, end: k * 0.3 + 0.3 },
-      { instance: `leg${i + 1}`, to: legUp(i), start: k * 0.3 + 0.3, end: k * 0.3 + 0.7, spin: 4 },
-    ]),
+    // Lift each leg straight up off the floor (clear of the legs lying beside it), turn it upright
+    // on its way over its hole, then screw it in. One leg at a time.
+    moves: [a, b].flatMap((i, k) => {
+      const lying = instances.find((n) => n.id === `leg${i + 1}`).initial
+      const t0 = k * 0.5
+      return [
+        { instance: `leg${i + 1}`, to: { pos: [lying.pos[0], 500, lying.pos[2]], rot: lying.rot }, start: t0, end: t0 + 0.12 },
+        { instance: `leg${i + 1}`, to: { ...legUp(i), pos: [corners[i][0], r1(t + L / 2 + 300), corners[i][1]] }, start: t0 + 0.12, end: t0 + 0.27 },
+        { instance: `leg${i + 1}`, to: legUp(i), start: t0 + 0.27, end: t0 + 0.48, spin: 4 },
+      ]
+    }),
     active: [`leg${a + 1}`, `leg${b + 1}`],
     tray: [{ part: 'leg', count: 2 }],
     warning: 'Hand tight only. Forcing a leg can strip the hole in the tabletop.',

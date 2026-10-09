@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { BufferGeometry, DoubleSide, Float32BufferAttribute, Group, Quaternion, Vector3 } from 'three'
 import type { Part } from '../data/schema'
 import { explode, frameAt } from '../engine/pose'
+import { FOV, frameStep } from '../engine/framing'
 import { assembly, useStore } from '../store'
 import { view } from './view'
 
@@ -16,7 +17,7 @@ const YELLOW = '#ffdb00'
 const BLUE_TINT = '#d6e6f4' // blue at ~15% on canvas: marks active mesh parts without hiding their shading
 
 // Start where step 1 looks from: CameraControls ignores a setLookAt made before it is ready.
-const START_CAMERA = assembly.steps[0].camera.position.map((v) => v * MM) as [number, number, number]
+const START_CAMERA = frameStep(assembly, 0, 1.5).position.multiplyScalar(MM).toArray()
 
 // Contact shadow sized to the product (and its laid-out parts), not one fixed 4 m patch.
 const REACH = Math.max(
@@ -34,7 +35,7 @@ export function Scene() {
   const [ready, setReady] = useState(false)
   return (
     <>
-      <Canvas camera={{ fov: 38, near: 0.01, far: 50, position: START_CAMERA }} dpr={[1, 2]}>
+      <Canvas camera={{ fov: FOV, near: 0.01, far: 50, position: START_CAMERA }} dpr={[1, 2]}>
         <color attach="background" args={[CANVAS]} />
         <hemisphereLight args={['#ffffff', '#e8e4da', 1.5]} />
         <directionalLight position={[1.5, 3, 2]} intensity={1.4} />
@@ -73,9 +74,9 @@ function CameraRig() {
   const replayNonce = useStore((s) => s.replayNonce)
   const record = useStore((s) => s.record)
   const userMoved = useRef(false)
-  // Step cameras are framed for a landscape view. On a portrait canvas (phones) the width is what
-  // runs out, so pull back by the aspect ratio.
-  // Read at apply time, not as a dependency: resizing (e.g. the phone sheet opening) mustn't reset the view.
+  // Each step is framed for the canvas it's shown on (phone portrait, landscape, desktop), so
+  // everything the step is about stays in view. Read the aspect at apply time, not as a
+  // dependency: resizing (e.g. the phone sheet opening) mustn't reset the view.
   const size = useThree((s) => s.size)
   const aspect = useRef(1)
   useEffect(() => {
@@ -83,11 +84,9 @@ function CameraRig() {
   }, [size])
 
   useEffect(() => {
-    const { position: cam, target: g } = assembly.steps[step].camera
     const apply = () => {
-      const pullBack = aspect.current < 1 ? Math.min(1.9, 1 / aspect.current) : 1
-      const p = cam.map((v, k) => g[k] + (v - g[k]) * pullBack)
-      ref.current?.setLookAt(p[0] * MM, p[1] * MM, p[2] * MM, g[0] * MM, g[1] * MM, g[2] * MM, true)
+      const { position: p, target: g } = frameStep(assembly, step, aspect.current)
+      ref.current?.setLookAt(p.x * MM, p.y * MM, p.z * MM, g.x * MM, g.y * MM, g.z * MM, true)
     }
     apply()
     // On first mount the controls are not attached yet and drop the call; repeat next frame.
@@ -343,7 +342,7 @@ function Arrows() {
     if (!group.current) return
     const { t, exploded } = useStore.getState()
     group.current.position.y = Math.sin(clock.elapsedTime * 4) * 0.012
-    group.current.visible = !exploded && t < 0.98
+    group.current.visible = !exploded && t >= assembly.steps[step].arrowsAt && t < 0.98
   })
 
   return (

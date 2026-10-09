@@ -36,10 +36,16 @@ const data = {
         'Lay the cardboard flat. Put the tabletop on it with the glossy side facing down, so the four pre-drilled holes face up.',
       durationSec: 3.5,
       camera: { position: [750, 650, 950], target: [0, 60, 0] },
-      moves: [{ instance: 'top', to: { pos: [0, 25, 0], rot: [180, 0, 0] } }],
+      // Turn it over while it's held up (it would cut through the cardboard otherwise), then lower it.
+      moves: [
+        { instance: 'top', to: { pos: [0, 380, 0], rot: [180, 0, 0] }, start: 0, end: 0.55 },
+        { instance: 'top', to: { pos: [0, 25, 0], rot: [180, 0, 0] }, start: 0.6, end: 1 },
+      ],
       active: ['top'],
       showFinishedFace: true,
-      arrows: [{ from: [0, 260, 0], to: [0, 90, 0] }],
+      // Beside the board, not through it while it turns over.
+      arrows: [{ from: [345, 260, 0], to: [345, 90, 0] }],
+      arrowsAt: 0.55, // "lower it": shown once it's turned over
       tray: [{ part: 'top', count: 1 }, { part: 'cardboard', count: 1 }],
       warning: 'Glossy side DOWN. If you can see the shiny surface, flip it. The holes must face you.',
       checklist: ['Tabletop is on the cardboard, glossy side down', 'I can see the 4 corner holes'],
